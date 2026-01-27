@@ -1,0 +1,57 @@
+\documentclass[11pt,a4paper]{article}
+
+% 1. Codificación e Idioma
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel}
+
+% 2. Paquete de gestión de captiones (añadir esto suele fijar el error)
+\usepackage{caption} 
+
+% 3. Formato y Autores
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{authblk} 
+
+% 4. Bibliografía APA (Cargar al final del preámbulo)
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{referencias.bib}
+
+\title{\textbf{Título del Artículo Científico}}
+\author{Nombre del Autor}
+\affil{Máster TECI - Series Temporales}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	% --- Resumen ---
+	\begin{abstract}
+		\noindent El resumen debe tener un máximo de 250 palabras. Aquí se debe describir de forma concisa el objetivo del estudio, la metodología aplicada, los resultados principales y las conclusiones alcanzadas. Se empleará un lenguaje científico y preciso durante toda la redacción.
+	\end{abstract}
+	
+	\noindent \textbf{Palabras clave:} Serie temporal, Predicción, Máster TECI, [Palabra 4].
+	
+	
+	% Sustituye el \hr por esto si quieres una línea:
+	\vspace{0.5cm}
+	\hrule
+	\vspace{0.5cm}
+	\section{Introducción}
+	La introducción debe contextualizar el problema de las series temporales tratado. Es fundamental incluir citas bibliográficas que apoyen el estado del arte siguiendo el formato APA \parencite{ejemplo2026}.
+	
+	\section{Metodología}
+	Descripción detallada del modelo realizado, los datos utilizados y los procedimientos técnicos aplicados.
+	
+	\section{Resultados}
+	Presentación de los hallazgos obtenidos. Se pueden incluir tablas y figuras para mayor claridad.
+	
+	\section{Discusión}
+	Análisis de los resultados en comparación con la literatura consultada. Debe incluirse la \textbf{autoevaluación del modelo realizado}, analizando sus fortalezas y limitaciones.
+	
+	\section{Conclusiones}
+	Resumen de las aportaciones principales del trabajo y posibles líneas futuras.
+	
+	% --- Bibliografía ---
+	\newpage
+	\printbibliography[title={Referencias}]
+	
+\end{document}

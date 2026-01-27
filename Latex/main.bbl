@@ -1,0 +1,85 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/apasortcite//global/global}
+    \entry{ejemplo2026}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=dd18b6dd52aa5f907e31e00c79741f5d}{%
+           family={Rodríguez},
+           familyi={R\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{fullhash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{bibnamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{authorbibnamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{authornamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{authorfullhash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Revista de Tecnología e Innovación}
+      \field{title}{Análisis Avanzado de Series Temporales}
+      \field{volume}{10}
+      \field{year}{2026}
+      \field{pages}{15\bibrangedash 30}
+      \range{pages}{16}
+    \endentry
+  \enddatalist
+  \datalist[entry]{apa/global//global/global}
+    \entry{ejemplo2026}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=dd18b6dd52aa5f907e31e00c79741f5d}{%
+           family={Rodríguez},
+           familyi={R\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{fullhash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{bibnamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{authorbibnamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{authornamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \strng{authorfullhash}{dd18b6dd52aa5f907e31e00c79741f5d}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Revista de Tecnología e Innovación}
+      \field{title}{Análisis Avanzado de Series Temporales}
+      \field{volume}{10}
+      \field{year}{2026}
+      \field{pages}{15\bibrangedash 30}
+      \range{pages}{16}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
