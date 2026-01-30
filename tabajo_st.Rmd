@@ -1,0 +1,621 @@
+---
+title: "trabajo_st"
+author: "jorge, bogurad, sergio"
+date: "2026-01-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Carga de librerías necesarias:
+```{r, eval=F}
+library(timsac)
+library(haven)
+library(datasets)
+library(forecast)
+library(descomponer)
+library(lmtest)
+library(tsoutliers)
+library(tseries)
+library(nortest)
+library(ggplot2)
+library(latex2exp)
+library(xtable)
+library(kableExtra)
+library(stringr)
+library(dplyr)
+```
+
+Carga de los datos:
+```{r}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+data <- read.csv("data_monthly.csv")
+data.ts <-ts(data$MONTHLY_AVG, start = c(2010,1), frequency = 12)
+```
+
+## EDA
+
+Visualización de la serie:
+```{r}
+plot(data.ts)
+```
+
+Separación en train-test:
+```{r}
+train.ts = window(data.ts, end=c(2023,12))
+test.ts = window(data.ts, start=c(2024,1))
+```
+
+```{r}
+# Convertir la línea de referencia a ts del mismo tiempo que data.ts
+ref_line <- ts(rep(25, length(data.ts)), start = start(data.ts), frequency = frequency(data.ts))
+
+autoplot(data.ts, series = NULL) +  # No añade leyenda
+  autolayer(train.ts, series = "Entrenamiento") +
+  autolayer(test.ts, series = "Validación") +
+  autolayer(ref_line, series = "Referencia", linetype = "dashed", color = "black") +
+  labs(
+    title = "Media mensual de NO2",
+    x = "Tiempo",
+    y = expression(mu * g / m^3)
+  ) +
+  scale_color_manual(values = c(
+    "Entrenamiento" = "blue",
+    "Validación" = "red",
+    "Referencia" = "black"
+  )) +
+  scale_linetype_manual(values = c(
+    "Entrenamiento" = "solid",
+    "Validación" = "solid",
+    "Referencia" = "dashed"
+  )) +
+  theme_minimal() +
+  theme(
+    legend.title = element_blank(),
+    legend.position = c(0.95, 0.95),
+    legend.justification = c("right", "top"),
+    legend.background = element_rect(fill = alpha("white", 0.6), color = NA)
+  )
+```
+
+Descomposición de la serie:
+```{r}
+# Aditiva
+descomp1=decompose(train.ts)
+plot(descomp1)
+train.tsDES=train.ts-descomp1$seasonal
+plot(train.tsDES,col="blue")
+par(new=T)
+plot(train.ts,col="red")
+
+# Multiplicativa
+descomp1=decompose(train.ts,type="multiplicative")
+plot(descomp1)
+train.tsDES=train.ts-descomp1$seasonal
+plot(train.tsDES,col="blue")
+par(new=T)
+plot(train.ts,col="red")
+```
+
+Transformación de la serie para estabilizar la varianza:
+```{r}
+lambda=forecast::BoxCox.lambda(train.ts)
+train.ts.trans=forecast::BoxCox(train.ts,lambda)
+test.ts.trans=forecast::BoxCox(test.ts,lambda)
+data.ts.trans=forecast::BoxCox(data.ts,lambda)
+plot(train.ts.trans) 
+print(lambda)
+```
+
+Visualización de la serie transformada:
+```{r}
+autoplot(data.ts.trans, series = NULL) +  # No añade leyenda
+  autolayer(train.ts.trans, series = "Entrenamiento") +
+  autolayer(test.ts.trans, series = "Validación")+
+  labs(
+    title = "Media mensual de NO2 transformada",
+    x = "Tiempo",
+    y = expression(mu * g / m^3)
+  ) +
+  scale_color_manual(values = c(
+    "Entrenamiento" = "blue",
+    "Validación" = "red"
+  )) +
+  scale_linetype_manual(values = c(
+    "Entrenamiento" = "solid",
+    "Validación" = "solid"
+  )) +
+  theme_minimal() +
+  theme(
+    legend.title = element_blank(),
+    legend.position = c(0.95, 0.95),
+    legend.justification = c("right", "top"),
+    legend.background = element_rect(fill = alpha("white", 0.6), color = NA)
+  )
+```
+
+Detección de outliers:
+```{r}
+outliers.train.trans=tsoutliers::tso(train.ts.trans,types="AO",maxit.iloop=10)
+outliers.train.trans
+plot(outliers.train.trans)
+```
+
+Diferenciaciones estacionales:
+```{r}
+(ndiffes=nsdiffs(train.ts.trans))
+train.ts.trans.diff = diff(train.ts.trans, lag=12, differences=ndiffes) 
+test.ts.trans.diff = diff(test.ts.trans, lag=12, differences=ndiffes) 
+data.ts.trans.diff = diff(data.ts.trans, lag=12, differences = ndiffes)
+(ndiffes=nsdiffs(train.ts.trans.diff))
+```
+
+Diferenciaciones regulares:
+```{r}
+(ndif=ndiffs(train.ts.trans.diff))
+```
+
+Visualización de la serie diferenciada (los valores en negro corresponden a 1 año perdido al diferenciar estacionalmente):
+```{r}
+autoplot(data.ts.trans.diff, series = NULL) +  # No añade leyenda
+  autolayer(train.ts.trans.diff, series = "Entrenamiento") +
+  autolayer(test.ts.trans.diff, series = "Validación")+
+  labs(
+    title = "Media mensual de NO2 transformada",
+    x = "Tiempo",
+    y = expression(mu * g / m^3)
+  ) +
+  scale_color_manual(values = c(
+    "Entrenamiento" = "blue",
+    "Validación" = "red"
+  )) +
+  scale_linetype_manual(values = c(
+    "Entrenamiento" = "solid",
+    "Validación" = "solid"
+  )) +
+  theme_minimal() +
+  theme(
+    legend.title = element_blank(),
+    legend.position = c(0.95, 0.95),
+    legend.justification = c("right", "top"),
+    legend.background = element_rect(fill = alpha("white", 0.6), color = NA)
+  )
+```
+
+Periodogramas
+```{r}
+periodograma(train.ts.trans.diff)
+gperiodograma(train.ts.trans.diff)
+```
+
+Test de Dickey-Fuller:
+```{r}
+adf.test(train.ts.trans.diff)
+```
+
+## Suavizados
+
+Holt-Winters aditivo:
+```{r}
+# Transformada
+sHW.trans=HoltWinters(train.ts.trans)
+f_sHW.trans=forecast(sHW.trans,24) 
+plot(f_sHW.trans)
+summary(f_sHW.trans) 
+alpha_HW.add=f_sHW.trans$model$alpha
+beta_HW.add=f_sHW.trans$model$beta
+gamma_HW.add=f_sHW.trans$model$gamma
+rmse_HW.add=sqrt(f_sHW.trans$model$SSE / dim(f_sHW.trans$model$fitted)[1])
+```
+
+Holt-Winters multiplicativo:
+```{r}
+# Transformada
+sHW.trans.mult=HoltWinters(train.ts.trans, seasonal="mult")
+f_sHW.trans.mult=forecast(sHW.trans.mult,24) 
+plot(f_sHW.trans.mult)
+summary(f_sHW.trans.mult) 
+alpha_HW.mult=f_sHW.trans.mult$model$alpha
+beta_HW.mult=f_sHW.trans.mult$model$beta
+gamma_HW.mult=f_sHW.trans.mult$model$gamma
+```
+
+Suavizado doble:
+```{r}
+# Transformada
+train.trans.ets = ets(train.ts.trans)
+f_ets=forecast(train.trans.ets,24) 
+plot(f_ets)
+summary(f_ets)
+alpha_H=f_ets$model$par["alpha"]
+gamma_H=f_ets$model$par["gamma"]
+rmse_H=sqrt(f_ets$model$mse)
+```
+
+Suavizado simple:
+```{r}
+# Transformada
+train.ts.trans.ses=ses(train.ts.trans,h=24) 
+f_ses=forecast(train.ts.trans.ses,24) 
+plot(f_ses)
+summary(f_ses)
+alpha_H=f_ets$model$par["alpha"]
+```
+
+Tabla comparativa
+```{r}
+rmse_HW.add.val <- sqrt(mean((f_sHW.trans$mean - test.ts.trans)^2))
+rmse_H.val <- sqrt(mean((f_ets$mean - test.ts.trans)^2))
+smooth_table <- data.frame(matrix(ncol=6, nrow=0))
+smooth_table <- rbind(smooth_table, c(
+  "Holt-Winters aditivo",
+  formatC(alpha_HW.add, format = "f", digits = 4),
+  formatC(beta_HW.add, format = "f", digits = 4),
+  formatC(gamma_HW.add, format = "f", digits = 4),
+  formatC(rmse_HW.add, format = "f", digits = 4),
+  formatC(rmse_HW.add.val, format = "f", digits = 4)
+))
+
+smooth_table <- rbind(smooth_table, c(
+  "Holt",
+  formatC(alpha_H, format = "f", digits = 4),
+  formatC(gamma_H, format = "f", digits = 4),
+  "-",
+  formatC(rmse_H, format = "f", digits = 4),
+  formatC(rmse_H.val, format = "f", digits = 4)
+))
+colnames(smooth_table) <- c("Modelo", "Alpha", "Beta", "Gamma", "RMSE (train)","RMSE (val)")
+print(smooth_table)
+```
+
+Tabla comparativa en Latex:
+```{r, eval=F}
+smooth_table %>%
+  kable("latex", booktabs = TRUE, escape = FALSE) %>%
+  kable_styling(latex_options = c("hold_position"))
+```
+
+## Ajuste de modelos SARIMA
+
+FAS y FAP:
+```{r}
+acf(train.ts.trans.diff,lag.max = 50)
+pacf(train.ts.trans.diff,lag.max = 50)
+```
+
+Modelo calibrado manualmente:
+```{r}
+fitARIMA <- arima(train.ts.trans, order=c(2,0,0), seasonal = list(order = c(2,1,1), period = 12), method="ML")
+coef_test <- coeftest(fitARIMA)
+print(coef_test[,1])
+# Independencia
+(indep <- checkresiduals(fitARIMA))
+# Homocedasticidad
+res <- fitARIMA$residuals
+n <- length(res)
+regresor <- 1:n
+(homo <- lmtest::bptest(res~regresor))
+# Normalidad
+(norm <- lillie.test(res))
+# RMSE
+arima_test <- forecast(fitARIMA,24)
+(rmse <- sqrt(mean((arima_test$mean - test.ts.trans)^2)))
+```
+
+Entrenamiento de los modelos y tests de independencia, homocedasticidad y normalidad:
+```{r, eval=F}
+p_vals <- 0:3
+q_vals <- 0:3
+P_vals <- 0:3
+Q_vals <- 0:3
+
+coef_table <- data.frame(matrix(ncol=4, nrow=0))
+colnames(coef_table) <- c("Modelo", "Coeficientes", "Valores", "P-valores")
+hyp_table <- data.frame(matrix(ncol=4, nrow=0))
+colnames(hyp_table) <- c("Modelo", "Independencia", "Homocedasticidad", "Normalidad")
+rmse_table <- data.frame(matrix(ncol=3, nrow=0))
+colnames(rmse_table) <- c("Modelo", "RMSE", "RMSE_train")
+
+for (p in p_vals) {
+  for (q in q_vals) {
+    for (P in P_vals) {
+      for (Q in Q_vals) {
+        
+        # Ajuste modelo ARIMA
+        fitARIMA <- try(
+          arima(
+            train.ts.trans,
+            order = c(p, 0, q),
+            seasonal = list(order = c(P, 1, Q), period = 12),
+            method = "ML"
+          ),
+          silent = TRUE
+        )
+        
+        # Saltar modelos que no convergen
+        if (inherits(fitARIMA, "try-error")) next
+        
+        # Extraer p-values de coeficientes
+        coef_test <- try({coeftest(fitARIMA)}, silent=T)
+        if (inherits(coef_test, "try-error")) next
+        if (any(is.na(coef_test[,4]))) next
+        pvals <- coef_test[,4]
+        
+        # Solo imprimir si todos los coeficientes son significativos
+        if (all(pvals <= 0.05)) {
+          coef_table <- rbind(coef_table, 
+                              data.frame("Modelo"=rep(paste0("(", p, ",", 0,",", q, ")(", P,",", 1,",", Q,")"), length(coef_test[,1])),
+                                         "Coeficientes"=names(fitARIMA$coef),
+                                         "Valores"=coef_test[,1],
+                                         "P-valores"=coef_test[,4])
+                              )
+          
+          # Independencia
+          indep <- checkresiduals(fitARIMA) 
+          # Homocedasticidad
+          res <- fitARIMA$residuals
+          n <- length(res)
+          regresor <- 1:n
+          homo <- lmtest::bptest(res~regresor)
+          # Normalidad
+          norm <- lillie.test(res)
+          
+          hyp_table <- rbind(hyp_table,
+                             data.frame("Modelo"=paste0("(", p, ",", 0,",", q, ")(", P,",", 1,",", Q,")"),
+                                        "Independencia"=indep$p.value,
+                                        "Homocedasticidad"=homo$p.value,
+                                        "Normalidad"=norm$p.value)
+                             )
+          
+          arima_test <- forecast(fitARIMA,24)
+          rmse_table <- rbind(rmse_table,
+                              data.frame("Modelo"=paste0("(", p, ",", 0,",", q, ")(", P,",", 1,",", Q,")"),
+                                         "RMSE"=sqrt(mean((arima_test$mean - test.ts.trans)^2)),
+                                         "RMSE_train"=sqrt(mean(fitARIMA$residuals^2))
+                                         )
+                              )
+          
+        }
+      }
+    }
+  }
+}
+```
+
+Tablas comparativas de los modelos:
+```{r}
+hyp_table2 <- hyp_table
+hyp_table2[, 2:4] <- apply(hyp_table2[,2:4], 2, function(x){ifelse(x>0.05, "SÍ", "NO")})
+
+rownames(hyp_table) <- NULL
+rownames(hyp_table2) <- NULL
+rownames(coef_table) <- NULL
+```
+
+Tabla resumen de los test de hipótesis en Latex:
+```{r}
+hyp_table <- hyp_table %>%
+  mutate(Modelo = paste0(Modelo, "_{[12]}"))
+
+hyp_table <- hyp_table %>%
+  mutate(Modelo = paste0("$", Modelo, "$"))
+
+hyp_table %>%
+  kable("latex", booktabs = TRUE, digits = 2) %>%
+  row_spec(1, background = "yellow!30") %>%
+  row_spec(2, background = "green!30")
+
+hyp_table_colored <- hyp_table %>%
+  mutate(across(2:4, ~cell_spec(sprintf("%.4f", .x), "latex",
+                                color = "black",
+                                background = case_when(
+                                  .x < 0.01 ~ "red!30",
+                                  .x >= 0.01 & .x <= 0.05 ~ "yellow!30",
+                                  .x > 0.05 ~ "green!30"
+                                )),
+                .names = "{.col}"))
+
+hyp_table_colored %>%
+  select(Modelo, 2:4) %>%   # columnas coloreadas
+  kable("latex", booktabs = TRUE, escape = FALSE, digits = 4)
+```
+
+Tabla resumen de los test de hipótesis en Latex:
+```{r}
+hyp_table2 <- hyp_table2 %>%
+  mutate(Modelo = hyp_table$Modelo)
+
+hyp_table2_colored <- hyp_table2 %>%
+  mutate(across(2:4, ~{
+    # Definir fondo según los valores en hyp_table
+    bg <- case_when(
+      hyp_table[[cur_column()]] < 0.01 ~ "red!30",
+      hyp_table[[cur_column()]] >= 0.01 & hyp_table[[cur_column()]] <= 0.05 ~ "yellow!30",
+      hyp_table[[cur_column()]] > 0.05 ~ "green!30"
+    )
+    # Aplicar cell_spec sobre los valores de hyp_table2
+    cell_spec(as.character(.x), "latex", background = bg, escape = FALSE)
+  }, .names = "{.col}"))
+
+hyp_table2_colored <- hyp_table2_colored %>%
+  rename_with(
+    ~ c("¿Independiente?", "¿Homocedástica?", "¿Normal?"),
+    .cols = 2:4  # o .cols = ends_with("_col") si quieres más automático
+  )
+
+hyp_table2_colored <- hyp_table2_colored %>%
+  mutate(`RMSE (train)` = rmse_table$RMSE_train,
+         `RMSE (val)` = rmse_table$RMSE)
+
+hyp_table2_colored %>%
+  select(Modelo, 2:4, `RMSE (train)`, `RMSE (val)`) %>%
+  kable("latex", booktabs = TRUE, escape = FALSE, digits=4)
+```
+
+Selección de los modelos candidatos:
+```{r}
+candidates <- hyp_table %>%
+  filter(
+    as.numeric(Independencia) > 0.05,
+    as.numeric(Homocedasticidad) > 0.05,
+    as.numeric(Normalidad) > 0.01
+)
+
+hyp_table2 <- hyp_table2 %>%
+  mutate(`RMSE (train)` = rmse_table$RMSE_train,
+         `RMSE (val)` = rmse_table$RMSE)
+
+hyp_table2_candidates <- hyp_table2 %>%
+  filter(Modelo %in% candidates$Modelo)
+```
+
+Selección de los 3 mejores modelos según el RMSE:
+```{r}
+top3 <- hyp_table2_candidates %>%
+  arrange(`RMSE (val)`) %>%  
+  slice_head(n = 3)
+
+print(top3)
+```
+
+Tabla en Latex de los mejores modelos:
+```{r}
+top3 %>% 
+  select(Modelo, 2:4, `RMSE (train)`, `RMSE (val)`) %>%
+  kable("latex", booktabs = TRUE, escape = FALSE, digits=4)
+```
+
+Tabla en Latex con todos los modelos, subrayando los mejores:
+```{r}
+top3_names <- top3$Modelo
+
+hyp_table2_colored <- hyp_table2_colored %>%
+  mutate(Modelo = if_else(
+    Modelo %in% top3_names,
+    cell_spec(Modelo, "latex", background = "magenta!30", escape = FALSE),
+    Modelo
+  ))
+
+hyp_table2_colored %>%
+  select(Modelo, 2:4, `RMSE (train)`, `RMSE (val)`) %>%
+  kable("latex", booktabs = TRUE, escape = FALSE, digits=4)
+```
+
+Tabla comparativa con los 3 mejores modelos y sus ecuaciones:
+```{r}
+top3_table <- data.frame(matrix(ncol=4, nrow=3))
+colnames(top3_table) <- c("Modelo", "Ecuación", "RMSE (train)", "RMSE (val)")
+
+top3_names <- str_remove_all(top3_names, "[$]|_\\{\\[12\\]\\}")
+
+arima_params <- lapply(top3_names, function(x) {
+  pq_regex <- str_match(x, "\\((\\d+),(\\d+),(\\d+)\\)\\((\\d+),(\\d+),(\\d+)\\)")
+  p <- as.numeric(pq_regex[1,2])
+  d <- as.numeric(pq_regex[1,3])
+  q <- as.numeric(pq_regex[1,4])
+  P <- as.numeric(pq_regex[1,5])
+  D <- as.numeric(pq_regex[1,6])
+  Q <- as.numeric(pq_regex[1,7])
+  list(p=p, d=d, q=q, P=P, D=D, Q=Q, period=12)
+})
+
+arima_fits <- lapply(arima_params, function(par) {
+  arima(
+    train.ts.trans,
+    order = c(par$p, par$d, par$q),
+    seasonal = list(order = c(par$P, par$D, par$Q), period = par$period),
+    method = "ML"
+  )
+})
+
+build_poly_string <- function(coefs, prefix, B = "B", digits = 4, seasonal = FALSE) {
+  idx <- grep(paste0("^", prefix), names(coefs))
+  if (length(idx) == 0) return(NULL)
+  
+  terms <- sapply(idx, function(i) {
+    coef <- round(coefs[i], digits)
+    name <- names(coefs)[i]
+    
+    lag <- as.numeric(gsub(prefix, "", name))
+    
+    power <- if (seasonal) {
+      paste0("{", lag, "s}")
+    } else {
+      lag
+    }
+    
+    sign <- ifelse(coef >= 0, " - ", " + ")
+    paste0(sign, abs(coef), B, "^", power)
+  })
+  
+  paste0("1", paste(terms, collapse = ""))
+}
+
+build_arima_equation <- function(mod, params) {
+  coefs <- coef(mod)
+  
+  ar  <- build_poly_string(coefs, "ar")
+  sar <- build_poly_string(coefs, "sar", seasonal = TRUE)
+  ma  <- build_poly_string(coefs, "ma")
+  sma <- build_poly_string(coefs, "sma", seasonal = TRUE)
+  
+  AR_part <- combine_terms(ar, sar)
+  MA_part <- combine_terms(ma, sma)
+  
+  nabla_part <- build_nabla(params$d, params$D)
+  
+  lhs <- paste0(
+    if (!is.null(AR_part)) AR_part else "",
+    nabla_part,
+    "X_t"
+  )
+  
+  rhs <- paste0(
+    if (!is.null(MA_part)) MA_part else "",
+    "epsilon_t"
+  )
+  
+  paste(lhs, "=", rhs)
+}
+
+arima_equations <- Map(
+  build_arima_equation,
+  mod = arima_fits,
+  params = arima_params
+)
+
+top3_table$Modelo <- paste0("$", top3_names, "$")
+top3_table$`Ecuación` <- paste0("$", unlist(arima_equations), "$")
+top3_table$`RMSE (train)` <- round(top3$`RMSE (train)`, 4)
+top3_table$`RMSE (val)` <- round(top3$`RMSE (val)`, 4)
+```
+
+Tabla comparativa con ecuaciones en Latex
+```{r}
+top3_table %>%
+  select(everything()) %>%
+  kable("latex", booktabs = TRUE, escape = FALSE, digits=4)
+```
+
+Predicción con los 3 mejores modelos y con el suavizado Holt-Winters aditivo, reentrenando con todo el dataset (se usa CSS en vez de ML, ya que este último produce una verosimilitud muy pequeña y da error):
+```{r}
+sHW.trans=HoltWinters(data.ts.trans)
+f_sHW.trans=forecast(sHW.trans,24) 
+plot(f_sHW.trans)
+
+arima_fits <- lapply(arima_params, function(par) {
+  arima(
+    data.ts.trans,
+    order = c(par$p, par$d, par$q),
+    seasonal = list(order = c(par$P, par$D, par$Q), period = par$period),
+    method = "CSS"
+  )
+})
+
+arima_forecasts <- lapply(arima_fits, function(fit) {
+  fit_prediction <- forecast(fit, h = 24)
+  plot(fit_prediction)
+})
+```

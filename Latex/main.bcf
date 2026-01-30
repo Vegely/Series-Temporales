@@ -3059,7 +3059,32 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">referencias.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">ejemplo2026</bcf:citekey>
+    <bcf:citekey order="1" intorder="1">trabajo_series</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">trabajo_series</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">who</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">who</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">soares_2025_17658760</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">soares_2025_17658760</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">avila2023</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">avila2023</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">orta_blanco2024</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">orta_blanco2024</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">Convolutional</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">Convolutional</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">mattera2024</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">mattera2024</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">SANCHOVAL2026121741</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">SANCHOVAL2026121741</bcf:citekey>
+    <bcf:citekey order="17" intorder="1">box2015</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">DickeyFullen</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">pena2010_cap2</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">pena2010_cap2</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">box2015</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">box2015</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">LjungBox</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">BreuschPagan</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">KSL</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">hyndman2018forecasting</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">

@@ -19,65 +19,1413 @@
 
 \refsection{0}
   \datalist[entry]{apa/apasortcite//global/global}
-    \entry{ejemplo2026}{article}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=dd18b6dd52aa5f907e31e00c79741f5d}{%
-           family={Rodríguez},
-           familyi={R\bibinitperiod},
-           given={Antonio},
-           giveni={A\bibinitperiod},
+    \entry{avila2023}{misc}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=9f9297874e331a0c29ed8494a4205794}{%
+           family={Avila},
+           familyi={A\bibinitperiod},
+           given={Matias\bibnamedelima Luis},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c4517a6e5cf1e678865aa34393203f4c}{%
+           family={Alonso},
+           familyi={A\bibinitperiod},
+           given={Andres\bibnamedelima M.},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aec0357660773edd048118aa3a9249f6}{%
+           family={Peña},
+           familyi={P\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{fullhash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{bibnamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{authorbibnamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{authornamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{authorfullhash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \strng{namehash}{966bdb303442ea085488e6268257b8ec}
+      \strng{fullhash}{8fd552f1292c327900dc534a604656c3}
+      \strng{bibnamehash}{8fd552f1292c327900dc534a604656c3}
+      \strng{authorbibnamehash}{8fd552f1292c327900dc534a604656c3}
+      \strng{authornamehash}{966bdb303442ea085488e6268257b8ec}
+      \strng{authorfullhash}{8fd552f1292c327900dc534a604656c3}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Revista de Tecnología e Innovación}
-      \field{title}{Análisis Avanzado de Series Temporales}
-      \field{volume}{10}
+      \field{howpublished}{Research Square (Preprint)}
+      \field{month}{4}
+      \field{note}{Version 1}
+      \field{title}{Modelling Multiple Seasonalities with {ARIMA}: Forecasting {Madrid} {NO2} Hourly Pollution Levels}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.21203/rs.3.rs-2860239/v1
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.21203/rs.3.rs-2860239/v1
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.21203/rs.3.rs-2860239/v1
+      \endverb
+    \endentry
+    \entry{trabajo_series}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f523235bd02db3a7ae110e4a63eda63b}{%
+           family={{Ayuntamiento de Madrid}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{fullhash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{bibnamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authorbibnamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authornamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authorfullhash}{f523235bd02db3a7ae110e4a63eda63b}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Portal de datos abiertos del Ayuntamiento de Madrid}
+      \field{note}{Accedido: 30-01-2026}
+      \field{title}{Calidad del aire. Datos horarios desde 2001}
       \field{year}{2026}
-      \field{pages}{15\bibrangedash 30}
-      \range{pages}{16}
+      \verb{urlraw}
+      \verb https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=f3c0f7d512273410VgnVCM2000000c205a0aRCRD
+      \endverb
+      \verb{url}
+      \verb https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=f3c0f7d512273410VgnVCM2000000c205a0aRCRD
+      \endverb
+    \endentry
+    \entry{box2015}{book}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=d30289ba50f0f7219fb405bc35b8b71c}{%
+           family={Box},
+           familyi={B\bibinitperiod},
+           given={George\bibnamedelimb E.\bibnamedelimi P.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=47888ee6b97a184c6a17093aeb509b29}{%
+           family={Jenkins},
+           familyi={J\bibinitperiod},
+           given={Gwilym\bibnamedelima M.},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=64798b045379893d750ad3f089861bad}{%
+           family={Reinsel},
+           familyi={R\bibinitperiod},
+           given={Gregory\bibnamedelima C.},
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=916fd57423e9b7ed0d3ba70c92287892}{%
+           family={Ljung},
+           familyi={L\bibinitperiod},
+           given={Greta\bibnamedelima M.},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Hoboken, NJ}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{a889686a50c7749def33de6826e92748}
+      \strng{fullhash}{73d0cc2792e602f1e990aa353e1752fd}
+      \strng{bibnamehash}{73d0cc2792e602f1e990aa353e1752fd}
+      \strng{authorbibnamehash}{73d0cc2792e602f1e990aa353e1752fd}
+      \strng{authornamehash}{a889686a50c7749def33de6826e92748}
+      \strng{authorfullhash}{73d0cc2792e602f1e990aa353e1752fd}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{5}
+      \field{isbn}{978-1-118-67502-1}
+      \field{title}{Time Series Analysis: Forecasting and Control}
+      \field{year}{2015}
+    \endentry
+    \entry{BreuschPagan}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b1dfc8bd5429c69dfc34b7b455574448}{%
+           family={Breusch},
+           familyi={B\bibinitperiod},
+           given={T.\bibnamedelimi S.},
+           giveni={T\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9e14725a523af0ec531911261aa60381}{%
+           family={Pagan},
+           familyi={P\bibinitperiod},
+           given={A.\bibnamedelimi R.},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {[Wiley, Econometric Society]}%
+      }
+      \strng{namehash}{cf81868549e18f22e5b01c58178df718}
+      \strng{fullhash}{cf81868549e18f22e5b01c58178df718}
+      \strng{bibnamehash}{cf81868549e18f22e5b01c58178df718}
+      \strng{authorbibnamehash}{cf81868549e18f22e5b01c58178df718}
+      \strng{authornamehash}{cf81868549e18f22e5b01c58178df718}
+      \strng{authorfullhash}{cf81868549e18f22e5b01c58178df718}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00129682, 14680262}
+      \field{journaltitle}{Econometrica}
+      \field{number}{5}
+      \field{title}{A Simple Test for Heteroscedasticity and Random Coefficient Variation}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{47}
+      \field{year}{1979}
+      \field{urldateera}{ce}
+      \field{pages}{1287\bibrangedash 1294}
+      \range{pages}{8}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/1911963
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/1911963
+      \endverb
+    \endentry
+    \entry{DickeyFullen}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=f71b803d01236b0fcd2bb3e25e740864}{%
+           family={Dickey},
+           familyi={D\bibinitperiod},
+           given={David\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c387dbcd083b0685a01bb3f63c78387a}{%
+           family={Fuller},
+           familyi={F\bibinitperiod},
+           given={Wayne\bibnamedelima A.},
+           giveni={W\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {[American Statistical Association, Taylor & Francis, Ltd.]}%
+      }
+      \strng{namehash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{fullhash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{bibnamehash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{authorbibnamehash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{authornamehash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{authorfullhash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Let n observations Y1, Y2, ..., Yn be generated by the model Yt = ρ Yt - 1 + et, where Y0 is a fixed constant and {et}t = 1n is a sequence of independent normal random variables with mean 0 and variance σ2. Properties of the regression estimator of ρ are obtained under the assumption that ρ = ± 1. Representations for the limit distributions of the estimator of ρ and of the regression t test are derived. The estimator of ρ and the regression t test furnish methods of testing the hypothesis that ρ = 1.}
+      \field{issn}{01621459, 1537274X}
+      \field{journaltitle}{Journal of the American Statistical Association}
+      \field{number}{366}
+      \field{title}{Distribution of the Estimators for Autoregressive Time Series With a Unit Root}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{74}
+      \field{year}{1979}
+      \field{urldateera}{ce}
+      \field{pages}{427\bibrangedash 431}
+      \range{pages}{5}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/2286348
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/2286348
+      \endverb
+    \endentry
+    \entry{mattera2024}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=61c3655caf669fa9e1b82b5519a2eba6}{%
+           family={Fernández-Avilés},
+           familyi={F\bibinithyphendelim A\bibinitperiod},
+           given={Gema},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f322adabfaf256f76dbff8ffbd812b9c}{%
+           family={Mattera},
+           familyi={M\bibinitperiod},
+           given={Raffaele},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2036ca04680dbade0a2469d58201ca20}{%
+           family={Scepi},
+           familyi={S\bibinitperiod},
+           given={Germana},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{41d5d4d964b2630d790ca07e25292c90}
+      \strng{fullhash}{2ede3db1af77f89cf0a1b980515975a7}
+      \strng{bibnamehash}{2ede3db1af77f89cf0a1b980515975a7}
+      \strng{authorbibnamehash}{2ede3db1af77f89cf0a1b980515975a7}
+      \strng{authornamehash}{41d5d4d964b2630d790ca07e25292c90}
+      \strng{authorfullhash}{2ede3db1af77f89cf0a1b980515975a7}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0038-0121}
+      \field{journaltitle}{Socio-Economic Planning Sciences}
+      \field{title}{Factor-Augmented Autoregressive Neural Network to forecast NOx in the city of Madrid}
+      \field{volume}{95}
+      \field{year}{2024}
+      \field{pages}{101958}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.seps.2024.101958
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0038012124001575
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0038012124001575
+      \endverb
+    \endentry
+    \entry{hyndman2018forecasting}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2f709db8a046ae1d056e75c1f3aad31c}{%
+           family={Hyndman},
+           familyi={H\bibinitperiod},
+           given={Rob\bibnamedelima J},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95cfbf5a8396e08b434cc6f7f5b18dc8}{%
+           family={Athanasopoulos},
+           familyi={A\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Melbourne, Australia}%
+      }
+      \list{publisher}{1}{%
+        {OTexts}%
+      }
+      \strng{namehash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{fullhash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{bibnamehash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{authorbibnamehash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{authornamehash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{authorfullhash}{f5d192acd9066e5facaab32c8173f6d0}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{title}{Forecasting: Principles and Practice}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://otexts.com/fpp2/
+      \endverb
+      \verb{url}
+      \verb https://otexts.com/fpp2/
+      \endverb
+    \endentry
+    \entry{Convolutional}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=9344e4269c87bfb31880510a374e627a}{%
+           family={Iskandaryan},
+           familyi={I\bibinitperiod},
+           given={Ditsuhi},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=817d955b543411ce4a8adb00e4b790a8}{%
+           family={Ramos},
+           familyi={R\bibinitperiod},
+           given={Francisco},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=54af46f81fc40e94ba90e7654db663c7}{%
+           family={Trilles},
+           familyi={T\bibinitperiod},
+           given={Sergio},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Public Library of Science}%
+      }
+      \strng{namehash}{66b2e5aa8b907fc1a6bc714b2333e70a}
+      \strng{fullhash}{2371e8cbe6fc61ed865d19c0250918f9}
+      \strng{bibnamehash}{2371e8cbe6fc61ed865d19c0250918f9}
+      \strng{authorbibnamehash}{2371e8cbe6fc61ed865d19c0250918f9}
+      \strng{authornamehash}{66b2e5aa8b907fc1a6bc714b2333e70a}
+      \strng{authorfullhash}{2371e8cbe6fc61ed865d19c0250918f9}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{PLOS ONE}
+      \field{month}{06}
+      \field{number}{6}
+      \field{title}{Bidirectional convolutional LSTM for the prediction of nitrogen dioxide in the city of Madrid}
+      \field{volume}{17}
+      \field{year}{2022}
+      \field{pages}{1\bibrangedash 20}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1371/journal.pone.0269295
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1371/journal.pone.0269295
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1371/journal.pone.0269295
+      \endverb
+    \endentry
+    \entry{LjungBox}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=f7a82bb6ffd958d21ff67d01ed964609}{%
+           family={LJUNG},
+           familyi={L\bibinitperiod},
+           given={G.\bibnamedelimi M.},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eade6557c776b6334da14f90638478e5}{%
+           family={BOX},
+           familyi={B\bibinitperiod},
+           given={G.\bibnamedelimi E.\bibnamedelimi P.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{fullhash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{bibnamehash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{authorbibnamehash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{authornamehash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{authorfullhash}{fb46895e55f5b429097c38ae05c79916}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Biometrika}
+      \field{month}{08}
+      \field{number}{2}
+      \field{title}{On a measure of lack of fit in time series models}
+      \field{volume}{65}
+      \field{year}{1978}
+      \field{pages}{297\bibrangedash 303}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1093/biomet/65.2.297
+      \endverb
+      \verb{eprint}
+      \verb https://academic.oup.com/biomet/article-pdf/65/2/297/649058/65-2-297.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1093/biomet/65.2.297
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1093/biomet/65.2.297
+      \endverb
+    \endentry
+    \entry{KSL}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=227e2167ae073d2ef1e2a6441d0dccec}{%
+           family={Massey},
+           familyi={M\bibinitperiod},
+           given={Frank\bibnamedelima J.},
+           giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {[American Statistical Association, Taylor & Francis, Ltd.]}%
+      }
+      \strng{namehash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{fullhash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{bibnamehash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{authorbibnamehash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{authornamehash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{authorfullhash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{01621459, 1537274X}
+      \field{journaltitle}{Journal of the American Statistical Association}
+      \field{number}{253}
+      \field{title}{The Kolmogorov-Smirnov Test for Goodness of Fit}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{46}
+      \field{year}{1951}
+      \field{urldateera}{ce}
+      \field{pages}{68\bibrangedash 78}
+      \range{pages}{11}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/2280095
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/2280095
+      \endverb
+    \endentry
+    \entry{orta_blanco2024}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=27f351a66b082ddfe740c6cc35fcf560}{%
+           family={Orta\bibnamedelima Blanco},
+           familyi={O\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Iván\bibnamedelima Samuel},
+           giveni={I\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Universidad Carlos III de Madrid}%
+      }
+      \strng{namehash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{fullhash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{bibnamehash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{authorbibnamehash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{authornamehash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{authorfullhash}{27f351a66b082ddfe740c6cc35fcf560}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{note}{Supervisors: Miguel Cárdenas Montes and Juan Miguel Marín Diazaraque}
+      \field{title}{Study of Air Quality due to {Madrid} {Central} with {Gaussian} {Processes}}
+      \field{type}{Master's Thesis}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://hdl.handle.net/20.500.14855/4761
+      \endverb
+      \verb{url}
+      \verb https://hdl.handle.net/20.500.14855/4761
+      \endverb
+    \endentry
+    \entry{pena2010_cap2}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=aec0357660773edd048118aa3a9249f6}{%
+           family={Peña},
+           familyi={P\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Madrid}%
+      }
+      \list{publisher}{1}{%
+        {Alianza Editorial}%
+      }
+      \strng{namehash}{aec0357660773edd048118aa3a9249f6}
+      \strng{fullhash}{aec0357660773edd048118aa3a9249f6}
+      \strng{bibnamehash}{aec0357660773edd048118aa3a9249f6}
+      \strng{authorbibnamehash}{aec0357660773edd048118aa3a9249f6}
+      \strng{authornamehash}{aec0357660773edd048118aa3a9249f6}
+      \strng{authorfullhash}{aec0357660773edd048118aa3a9249f6}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{2}
+      \field{edition}{2}
+      \field{isbn}{978-84-206-6945-8}
+      \field{title}{Análisis de series temporales}
+      \field{year}{2010}
+      \field{pages}{37\bibrangedash 74}
+      \range{pages}{38}
+    \endentry
+    \entry{SANCHOVAL2026121741}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=a8e76218888ea9767037b66c200cf4af}{%
+           family={{Sancho Val}},
+           familyi={S\bibinitperiod},
+           given={Joaquín},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d84a137576c6b3aa72ea4131b454982e}{%
+           family={Hernando},
+           familyi={H\bibinitperiod},
+           given={Carlos\bibnamedelima Cajal},
+           giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e0b7ecee23654c4d9f6ced9c3b09ca51}{%
+           family={{de Baños}},
+           familyi={d\bibinitperiod},
+           given={Lourdes\bibnamedelima Martínez},
+           giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5b6a84df2d64b645a0c48b69f1cc7325}
+      \strng{fullhash}{fad2b2685da08600cdff385183e1c2c1}
+      \strng{bibnamehash}{fad2b2685da08600cdff385183e1c2c1}
+      \strng{authorbibnamehash}{fad2b2685da08600cdff385183e1c2c1}
+      \strng{authornamehash}{5b6a84df2d64b645a0c48b69f1cc7325}
+      \strng{authorfullhash}{fad2b2685da08600cdff385183e1c2c1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1352-2310}
+      \field{journaltitle}{Atmospheric Environment}
+      \field{title}{Functional data analysis of air quality time series in Madrid Using FPCA and splines}
+      \field{volume}{367}
+      \field{year}{2026}
+      \field{pages}{121741}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.atmosenv.2025.121741
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1352231025007162
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1352231025007162
+      \endverb
+    \endentry
+    \entry{soares_2025_17658760}{misc}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=a3533e60d3592902b068b3e088da4539}{%
+           family={Soares},
+           familyi={S\bibinitperiod},
+           given={Joana},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4f1e60b5e4efaf11f293eb1aed6752aa}{%
+           family={Plass},
+           familyi={P\bibinitperiod},
+           given={Dietrich},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e26bfdb66c71d8a578112d3dedf06738}{%
+           family={Kienzler},
+           familyi={K\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f3a4dfce96295c3c21593d3791c83ca1}{%
+           family={González\bibnamedelima Ortiz},
+           familyi={G\bibinitperiod\bibinitdelim O\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0c82a9129044c0c32375f94a444fd5ce}{%
+           family={Gsella},
+           familyi={G\bibinitperiod},
+           given={Artur},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=57d9a7c12dfab527aa70cdd53a0e88c7}{%
+           family={Horálek},
+           familyi={H\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Zenodo}%
+      }
+      \strng{namehash}{b25c8c3c5d1d86921f38b3099888d4de}
+      \strng{fullhash}{423c59f9867040a465f3b6a18ca0e0c9}
+      \strng{bibnamehash}{423c59f9867040a465f3b6a18ca0e0c9}
+      \strng{authorbibnamehash}{423c59f9867040a465f3b6a18ca0e0c9}
+      \strng{authornamehash}{b25c8c3c5d1d86921f38b3099888d4de}
+      \strng{authorfullhash}{423c59f9867040a465f3b6a18ca0e0c9}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{Assessing the environmental burden of disease related to air pollution in Europe in 2023. ETC HE Report 2025/8.}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.5281/zenodo.17658760
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.5281/zenodo.17658760
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.5281/zenodo.17658760
+      \endverb
+    \endentry
+    \entry{who}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=531217507bec092b6ec36c0f78f46736}{%
+           family={{World Health Organization}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {World Health Organization}%
+      }
+      \list{location}{1}{%
+        {Geneva}%
+      }
+      \strng{namehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{fullhash}{531217507bec092b6ec36c0f78f46736}
+      \strng{bibnamehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{authorbibnamehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{authornamehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{authorfullhash}{531217507bec092b6ec36c0f78f46736}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{WHO global air quality guidelines: particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide}
+      \field{type}{techreport}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://apps.who.int/iris/handle/10665/345329
+      \endverb
+      \verb{url}
+      \verb https://apps.who.int/iris/handle/10665/345329
+      \endverb
     \endentry
   \enddatalist
   \datalist[entry]{apa/global//global/global}
-    \entry{ejemplo2026}{article}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=dd18b6dd52aa5f907e31e00c79741f5d}{%
-           family={Rodríguez},
-           familyi={R\bibinitperiod},
-           given={Antonio},
-           giveni={A\bibinitperiod},
+    \entry{avila2023}{misc}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=9f9297874e331a0c29ed8494a4205794}{%
+           family={Avila},
+           familyi={A\bibinitperiod},
+           given={Matias\bibnamedelima Luis},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c4517a6e5cf1e678865aa34393203f4c}{%
+           family={Alonso},
+           familyi={A\bibinitperiod},
+           given={Andres\bibnamedelima M.},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aec0357660773edd048118aa3a9249f6}{%
+           family={Peña},
+           familyi={P\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{fullhash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{bibnamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{authorbibnamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{authornamehash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \strng{authorfullhash}{dd18b6dd52aa5f907e31e00c79741f5d}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \strng{namehash}{966bdb303442ea085488e6268257b8ec}
+      \strng{fullhash}{8fd552f1292c327900dc534a604656c3}
+      \strng{bibnamehash}{8fd552f1292c327900dc534a604656c3}
+      \strng{authorbibnamehash}{8fd552f1292c327900dc534a604656c3}
+      \strng{authornamehash}{966bdb303442ea085488e6268257b8ec}
+      \strng{authorfullhash}{8fd552f1292c327900dc534a604656c3}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Revista de Tecnología e Innovación}
-      \field{title}{Análisis Avanzado de Series Temporales}
-      \field{volume}{10}
+      \field{howpublished}{Research Square (Preprint)}
+      \field{month}{4}
+      \field{note}{Version 1}
+      \field{title}{Modelling Multiple Seasonalities with {ARIMA}: Forecasting {Madrid} {NO2} Hourly Pollution Levels}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.21203/rs.3.rs-2860239/v1
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.21203/rs.3.rs-2860239/v1
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.21203/rs.3.rs-2860239/v1
+      \endverb
+    \endentry
+    \entry{trabajo_series}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f523235bd02db3a7ae110e4a63eda63b}{%
+           family={{Ayuntamiento de Madrid}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{fullhash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{bibnamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authorbibnamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authornamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authorfullhash}{f523235bd02db3a7ae110e4a63eda63b}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Portal de datos abiertos del Ayuntamiento de Madrid}
+      \field{note}{Accedido: 30-01-2026}
+      \field{title}{Calidad del aire. Datos horarios desde 2001}
       \field{year}{2026}
-      \field{pages}{15\bibrangedash 30}
-      \range{pages}{16}
+      \verb{urlraw}
+      \verb https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=f3c0f7d512273410VgnVCM2000000c205a0aRCRD
+      \endverb
+      \verb{url}
+      \verb https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=f3c0f7d512273410VgnVCM2000000c205a0aRCRD
+      \endverb
+    \endentry
+    \entry{box2015}{book}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=d30289ba50f0f7219fb405bc35b8b71c}{%
+           family={Box},
+           familyi={B\bibinitperiod},
+           given={George\bibnamedelimb E.\bibnamedelimi P.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=47888ee6b97a184c6a17093aeb509b29}{%
+           family={Jenkins},
+           familyi={J\bibinitperiod},
+           given={Gwilym\bibnamedelima M.},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=64798b045379893d750ad3f089861bad}{%
+           family={Reinsel},
+           familyi={R\bibinitperiod},
+           given={Gregory\bibnamedelima C.},
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=916fd57423e9b7ed0d3ba70c92287892}{%
+           family={Ljung},
+           familyi={L\bibinitperiod},
+           given={Greta\bibnamedelima M.},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Hoboken, NJ}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{a889686a50c7749def33de6826e92748}
+      \strng{fullhash}{73d0cc2792e602f1e990aa353e1752fd}
+      \strng{bibnamehash}{73d0cc2792e602f1e990aa353e1752fd}
+      \strng{authorbibnamehash}{73d0cc2792e602f1e990aa353e1752fd}
+      \strng{authornamehash}{a889686a50c7749def33de6826e92748}
+      \strng{authorfullhash}{73d0cc2792e602f1e990aa353e1752fd}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{5}
+      \field{isbn}{978-1-118-67502-1}
+      \field{title}{Time Series Analysis: Forecasting and Control}
+      \field{year}{2015}
+    \endentry
+    \entry{BreuschPagan}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b1dfc8bd5429c69dfc34b7b455574448}{%
+           family={Breusch},
+           familyi={B\bibinitperiod},
+           given={T.\bibnamedelimi S.},
+           giveni={T\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9e14725a523af0ec531911261aa60381}{%
+           family={Pagan},
+           familyi={P\bibinitperiod},
+           given={A.\bibnamedelimi R.},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {[Wiley, Econometric Society]}%
+      }
+      \strng{namehash}{cf81868549e18f22e5b01c58178df718}
+      \strng{fullhash}{cf81868549e18f22e5b01c58178df718}
+      \strng{bibnamehash}{cf81868549e18f22e5b01c58178df718}
+      \strng{authorbibnamehash}{cf81868549e18f22e5b01c58178df718}
+      \strng{authornamehash}{cf81868549e18f22e5b01c58178df718}
+      \strng{authorfullhash}{cf81868549e18f22e5b01c58178df718}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00129682, 14680262}
+      \field{journaltitle}{Econometrica}
+      \field{number}{5}
+      \field{title}{A Simple Test for Heteroscedasticity and Random Coefficient Variation}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{47}
+      \field{year}{1979}
+      \field{urldateera}{ce}
+      \field{pages}{1287\bibrangedash 1294}
+      \range{pages}{8}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/1911963
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/1911963
+      \endverb
+    \endentry
+    \entry{DickeyFullen}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=f71b803d01236b0fcd2bb3e25e740864}{%
+           family={Dickey},
+           familyi={D\bibinitperiod},
+           given={David\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c387dbcd083b0685a01bb3f63c78387a}{%
+           family={Fuller},
+           familyi={F\bibinitperiod},
+           given={Wayne\bibnamedelima A.},
+           giveni={W\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {[American Statistical Association, Taylor & Francis, Ltd.]}%
+      }
+      \strng{namehash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{fullhash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{bibnamehash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{authorbibnamehash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{authornamehash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \strng{authorfullhash}{bcf86ed68621816d8a6e135ace8b77cc}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Let n observations Y1, Y2, ..., Yn be generated by the model Yt = ρ Yt - 1 + et, where Y0 is a fixed constant and {et}t = 1n is a sequence of independent normal random variables with mean 0 and variance σ2. Properties of the regression estimator of ρ are obtained under the assumption that ρ = ± 1. Representations for the limit distributions of the estimator of ρ and of the regression t test are derived. The estimator of ρ and the regression t test furnish methods of testing the hypothesis that ρ = 1.}
+      \field{issn}{01621459, 1537274X}
+      \field{journaltitle}{Journal of the American Statistical Association}
+      \field{number}{366}
+      \field{title}{Distribution of the Estimators for Autoregressive Time Series With a Unit Root}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{74}
+      \field{year}{1979}
+      \field{urldateera}{ce}
+      \field{pages}{427\bibrangedash 431}
+      \range{pages}{5}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/2286348
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/2286348
+      \endverb
+    \endentry
+    \entry{mattera2024}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=61c3655caf669fa9e1b82b5519a2eba6}{%
+           family={Fernández-Avilés},
+           familyi={F\bibinithyphendelim A\bibinitperiod},
+           given={Gema},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f322adabfaf256f76dbff8ffbd812b9c}{%
+           family={Mattera},
+           familyi={M\bibinitperiod},
+           given={Raffaele},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2036ca04680dbade0a2469d58201ca20}{%
+           family={Scepi},
+           familyi={S\bibinitperiod},
+           given={Germana},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{41d5d4d964b2630d790ca07e25292c90}
+      \strng{fullhash}{2ede3db1af77f89cf0a1b980515975a7}
+      \strng{bibnamehash}{2ede3db1af77f89cf0a1b980515975a7}
+      \strng{authorbibnamehash}{2ede3db1af77f89cf0a1b980515975a7}
+      \strng{authornamehash}{41d5d4d964b2630d790ca07e25292c90}
+      \strng{authorfullhash}{2ede3db1af77f89cf0a1b980515975a7}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0038-0121}
+      \field{journaltitle}{Socio-Economic Planning Sciences}
+      \field{title}{Factor-Augmented Autoregressive Neural Network to forecast NOx in the city of Madrid}
+      \field{volume}{95}
+      \field{year}{2024}
+      \field{pages}{101958}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.seps.2024.101958
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0038012124001575
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0038012124001575
+      \endverb
+    \endentry
+    \entry{hyndman2018forecasting}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2f709db8a046ae1d056e75c1f3aad31c}{%
+           family={Hyndman},
+           familyi={H\bibinitperiod},
+           given={Rob\bibnamedelima J},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95cfbf5a8396e08b434cc6f7f5b18dc8}{%
+           family={Athanasopoulos},
+           familyi={A\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Melbourne, Australia}%
+      }
+      \list{publisher}{1}{%
+        {OTexts}%
+      }
+      \strng{namehash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{fullhash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{bibnamehash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{authorbibnamehash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{authornamehash}{f5d192acd9066e5facaab32c8173f6d0}
+      \strng{authorfullhash}{f5d192acd9066e5facaab32c8173f6d0}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{title}{Forecasting: Principles and Practice}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://otexts.com/fpp2/
+      \endverb
+      \verb{url}
+      \verb https://otexts.com/fpp2/
+      \endverb
+    \endentry
+    \entry{Convolutional}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=9344e4269c87bfb31880510a374e627a}{%
+           family={Iskandaryan},
+           familyi={I\bibinitperiod},
+           given={Ditsuhi},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=817d955b543411ce4a8adb00e4b790a8}{%
+           family={Ramos},
+           familyi={R\bibinitperiod},
+           given={Francisco},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=54af46f81fc40e94ba90e7654db663c7}{%
+           family={Trilles},
+           familyi={T\bibinitperiod},
+           given={Sergio},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Public Library of Science}%
+      }
+      \strng{namehash}{66b2e5aa8b907fc1a6bc714b2333e70a}
+      \strng{fullhash}{2371e8cbe6fc61ed865d19c0250918f9}
+      \strng{bibnamehash}{2371e8cbe6fc61ed865d19c0250918f9}
+      \strng{authorbibnamehash}{2371e8cbe6fc61ed865d19c0250918f9}
+      \strng{authornamehash}{66b2e5aa8b907fc1a6bc714b2333e70a}
+      \strng{authorfullhash}{2371e8cbe6fc61ed865d19c0250918f9}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{PLOS ONE}
+      \field{month}{06}
+      \field{number}{6}
+      \field{title}{Bidirectional convolutional LSTM for the prediction of nitrogen dioxide in the city of Madrid}
+      \field{volume}{17}
+      \field{year}{2022}
+      \field{pages}{1\bibrangedash 20}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1371/journal.pone.0269295
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1371/journal.pone.0269295
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1371/journal.pone.0269295
+      \endverb
+    \endentry
+    \entry{LjungBox}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=f7a82bb6ffd958d21ff67d01ed964609}{%
+           family={LJUNG},
+           familyi={L\bibinitperiod},
+           given={G.\bibnamedelimi M.},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eade6557c776b6334da14f90638478e5}{%
+           family={BOX},
+           familyi={B\bibinitperiod},
+           given={G.\bibnamedelimi E.\bibnamedelimi P.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{fullhash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{bibnamehash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{authorbibnamehash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{authornamehash}{fb46895e55f5b429097c38ae05c79916}
+      \strng{authorfullhash}{fb46895e55f5b429097c38ae05c79916}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Biometrika}
+      \field{month}{08}
+      \field{number}{2}
+      \field{title}{On a measure of lack of fit in time series models}
+      \field{volume}{65}
+      \field{year}{1978}
+      \field{pages}{297\bibrangedash 303}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1093/biomet/65.2.297
+      \endverb
+      \verb{eprint}
+      \verb https://academic.oup.com/biomet/article-pdf/65/2/297/649058/65-2-297.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1093/biomet/65.2.297
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1093/biomet/65.2.297
+      \endverb
+    \endentry
+    \entry{KSL}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=227e2167ae073d2ef1e2a6441d0dccec}{%
+           family={Massey},
+           familyi={M\bibinitperiod},
+           given={Frank\bibnamedelima J.},
+           giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {[American Statistical Association, Taylor & Francis, Ltd.]}%
+      }
+      \strng{namehash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{fullhash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{bibnamehash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{authorbibnamehash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{authornamehash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \strng{authorfullhash}{227e2167ae073d2ef1e2a6441d0dccec}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{01621459, 1537274X}
+      \field{journaltitle}{Journal of the American Statistical Association}
+      \field{number}{253}
+      \field{title}{The Kolmogorov-Smirnov Test for Goodness of Fit}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{46}
+      \field{year}{1951}
+      \field{urldateera}{ce}
+      \field{pages}{68\bibrangedash 78}
+      \range{pages}{11}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/2280095
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/2280095
+      \endverb
+    \endentry
+    \entry{orta_blanco2024}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=27f351a66b082ddfe740c6cc35fcf560}{%
+           family={Orta\bibnamedelima Blanco},
+           familyi={O\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Iván\bibnamedelima Samuel},
+           giveni={I\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Universidad Carlos III de Madrid}%
+      }
+      \strng{namehash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{fullhash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{bibnamehash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{authorbibnamehash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{authornamehash}{27f351a66b082ddfe740c6cc35fcf560}
+      \strng{authorfullhash}{27f351a66b082ddfe740c6cc35fcf560}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{note}{Supervisors: Miguel Cárdenas Montes and Juan Miguel Marín Diazaraque}
+      \field{title}{Study of Air Quality due to {Madrid} {Central} with {Gaussian} {Processes}}
+      \field{type}{Master's Thesis}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://hdl.handle.net/20.500.14855/4761
+      \endverb
+      \verb{url}
+      \verb https://hdl.handle.net/20.500.14855/4761
+      \endverb
+    \endentry
+    \entry{pena2010_cap2}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=aec0357660773edd048118aa3a9249f6}{%
+           family={Peña},
+           familyi={P\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Madrid}%
+      }
+      \list{publisher}{1}{%
+        {Alianza Editorial}%
+      }
+      \strng{namehash}{aec0357660773edd048118aa3a9249f6}
+      \strng{fullhash}{aec0357660773edd048118aa3a9249f6}
+      \strng{bibnamehash}{aec0357660773edd048118aa3a9249f6}
+      \strng{authorbibnamehash}{aec0357660773edd048118aa3a9249f6}
+      \strng{authornamehash}{aec0357660773edd048118aa3a9249f6}
+      \strng{authorfullhash}{aec0357660773edd048118aa3a9249f6}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{2}
+      \field{edition}{2}
+      \field{isbn}{978-84-206-6945-8}
+      \field{title}{Análisis de series temporales}
+      \field{year}{2010}
+      \field{pages}{37\bibrangedash 74}
+      \range{pages}{38}
+    \endentry
+    \entry{SANCHOVAL2026121741}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=a8e76218888ea9767037b66c200cf4af}{%
+           family={{Sancho Val}},
+           familyi={S\bibinitperiod},
+           given={Joaquín},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d84a137576c6b3aa72ea4131b454982e}{%
+           family={Hernando},
+           familyi={H\bibinitperiod},
+           given={Carlos\bibnamedelima Cajal},
+           giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e0b7ecee23654c4d9f6ced9c3b09ca51}{%
+           family={{de Baños}},
+           familyi={d\bibinitperiod},
+           given={Lourdes\bibnamedelima Martínez},
+           giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5b6a84df2d64b645a0c48b69f1cc7325}
+      \strng{fullhash}{fad2b2685da08600cdff385183e1c2c1}
+      \strng{bibnamehash}{fad2b2685da08600cdff385183e1c2c1}
+      \strng{authorbibnamehash}{fad2b2685da08600cdff385183e1c2c1}
+      \strng{authornamehash}{5b6a84df2d64b645a0c48b69f1cc7325}
+      \strng{authorfullhash}{fad2b2685da08600cdff385183e1c2c1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1352-2310}
+      \field{journaltitle}{Atmospheric Environment}
+      \field{title}{Functional data analysis of air quality time series in Madrid Using FPCA and splines}
+      \field{volume}{367}
+      \field{year}{2026}
+      \field{pages}{121741}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.atmosenv.2025.121741
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1352231025007162
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1352231025007162
+      \endverb
+    \endentry
+    \entry{soares_2025_17658760}{misc}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=a3533e60d3592902b068b3e088da4539}{%
+           family={Soares},
+           familyi={S\bibinitperiod},
+           given={Joana},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4f1e60b5e4efaf11f293eb1aed6752aa}{%
+           family={Plass},
+           familyi={P\bibinitperiod},
+           given={Dietrich},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e26bfdb66c71d8a578112d3dedf06738}{%
+           family={Kienzler},
+           familyi={K\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f3a4dfce96295c3c21593d3791c83ca1}{%
+           family={González\bibnamedelima Ortiz},
+           familyi={G\bibinitperiod\bibinitdelim O\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0c82a9129044c0c32375f94a444fd5ce}{%
+           family={Gsella},
+           familyi={G\bibinitperiod},
+           given={Artur},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=57d9a7c12dfab527aa70cdd53a0e88c7}{%
+           family={Horálek},
+           familyi={H\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Zenodo}%
+      }
+      \strng{namehash}{b25c8c3c5d1d86921f38b3099888d4de}
+      \strng{fullhash}{423c59f9867040a465f3b6a18ca0e0c9}
+      \strng{bibnamehash}{423c59f9867040a465f3b6a18ca0e0c9}
+      \strng{authorbibnamehash}{423c59f9867040a465f3b6a18ca0e0c9}
+      \strng{authornamehash}{b25c8c3c5d1d86921f38b3099888d4de}
+      \strng{authorfullhash}{423c59f9867040a465f3b6a18ca0e0c9}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{Assessing the environmental burden of disease related to air pollution in Europe in 2023. ETC HE Report 2025/8.}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.5281/zenodo.17658760
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.5281/zenodo.17658760
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.5281/zenodo.17658760
+      \endverb
+    \endentry
+    \entry{who}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=531217507bec092b6ec36c0f78f46736}{%
+           family={{World Health Organization}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {World Health Organization}%
+      }
+      \list{location}{1}{%
+        {Geneva}%
+      }
+      \strng{namehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{fullhash}{531217507bec092b6ec36c0f78f46736}
+      \strng{bibnamehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{authorbibnamehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{authornamehash}{531217507bec092b6ec36c0f78f46736}
+      \strng{authorfullhash}{531217507bec092b6ec36c0f78f46736}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{WHO global air quality guidelines: particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide}
+      \field{type}{techreport}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://apps.who.int/iris/handle/10665/345329
+      \endverb
+      \verb{url}
+      \verb https://apps.who.int/iris/handle/10665/345329
+      \endverb
     \endentry
   \enddatalist
 \endrefsection

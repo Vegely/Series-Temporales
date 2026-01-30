@@ -14,43 +14,603 @@
 % 4. Bibliografía APA (Cargar al final del preámbulo)
 \usepackage[style=apa, backend=biber]{biblatex}
 \addbibresource{referencias.bib}
-
-\title{\textbf{Título del Artículo Científico}}
-\author{Nombre del Autor}
-\affil{Máster TECI - Series Temporales}
-\date{}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric, fit, backgrounds}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{longtable}
+\title{\textbf{Ajuste y predicción mediante metodología Box-Jenkins para los niveles de contaminante \(NO_2\) en la estación de Cuatro Caminos}}
+\author{
+	Jorge Bengoa Pinedo \\
+	\textit{\small Universidad Politécnica de Madrid}
+	\and
+	Sergio Izquierdo Morona \\
+	\textit{\small Universidad Complutense de Madrid}
+	\and
+	Bogurad Barañski Barañska \\
+	\textit{\small Universidad Politécnica de Madrid}
+}
+\affil{\textbf{Máster TECI - Series Temporales}}
+\date{\today}
 
 \begin{document}
 	\maketitle
 	
 	% --- Resumen ---
 	\begin{abstract}
-		\noindent El resumen debe tener un máximo de 250 palabras. Aquí se debe describir de forma concisa el objetivo del estudio, la metodología aplicada, los resultados principales y las conclusiones alcanzadas. Se empleará un lenguaje científico y preciso durante toda la redacción.
+		\noindent En este trabajo se analiza la evolución temporal de la concentración de dióxido de nitrógeno (\(NO_2\)) en la estación de monitoreo de Cuatro Caminos (Madrid), utilizando datos mensuales desde 2010 hasta 2025. El objetivo principal es modelar el comportamiento del contaminante y generar predicciones precisas que sirvan de apoyo a la gestión ambiental. Metodológicamente, se ha realizado un preprocesamiento exhaustivo que incluye transformación de Box-Cox y diferenciación estacional. Se han contrastado dos enfoques: modelos deterministas de alisado exponencial y modelos estocásticos bajo la metodología Box-Jenkins (SARIMA). Los resultados indican que el modelo de Holt-Winters aditivo ofrece la mejor capacidad de generalización, obteniendo un RMSE de ( \(2.88 ,\mu g/m^3\)) en el conjunto de validación, superando a los modelos SARIMA ajustados, los cuales presentaron dificultades para cumplir estrictamente la hipótesis de normalidad en los residuos. Se concluye que, pese a la complejidad estocástica de la serie, los métodos de suavizado resultan robustos frente a las irregularidades históricas de los datos, capturando eficazmente la estacionalidad anual asociada al tráfico urbano.
 	\end{abstract}
 	
-	\noindent \textbf{Palabras clave:} Serie temporal, Predicción, Máster TECI, [Palabra 4].
+	\noindent \textbf{Palabras clave:} Serie temporal, Contaminación, Metodología Box-Jenkins, Cuatro Caminos.
 	
 	
-	% Sustituye el \hr por esto si quieres una línea:
-	\vspace{0.5cm}
-	\hrule
-	\vspace{0.5cm}
+	\newpage
 	\section{Introducción}
-	La introducción debe contextualizar el problema de las series temporales tratado. Es fundamental incluir citas bibliográficas que apoyen el estado del arte siguiendo el formato APA \parencite{ejemplo2026}.
+	En este trabajo se estudia la serie temporal del nivel de contaminante del dióxido de nitrógeno (\(NO_2\)) en la estación de medición de cuatro caminos en \(\mu g/m^3\). Para ello, se accede a la base de datos de contaminantes del Ayuntamiento de Madrid, \textcite{trabajo_series}, en la cual se recogen los datos horarios día a día desde 2001 para todas las estaciones de contaminante de la ciudad. En esta base de datos la estación 38 es la que se corresponde a la de Cuatro Caminos y el contaminante número 10 es el  que se corresponde con el \(NO_2\). 
+	\newline
+	
+	La elección \(NO_2\) como objeto de estudio en esta serie temporal no es arbitraria, sino que se escoge por su impacto crítico en la salud pública urbana. La exposición a este contaminante está directamente relacionada con enfermedades respiratorias crónicas, inflamación de las vías aéreas y una reducción de la función pulmonar, afectando desproporcionadamente a grupos vulnerables como niños y ancianos tal como se recoge en \textcite{who}. Debido a estos peligros, la Organización Mundial de la Salud ha endurecido recientemente sus directrices, recomendando que las concentraciones medias anuales no superen los \(10 \, \mu g/m^3\) y estableciendo un límite de \(25 \, \mu g/m^3\) para la exposición diaria.
+	\newline
+	
+	En el contexto europeo y español, la situación es especialmente preocupante. Según el informe más reciente del Centro Temático Europeo sobre Salud Humana y Medio Ambiente, la contaminación del aire continúa siendo el mayor riesgo ambiental para la salud en Europa, con una carga de enfermedad significativa atribuible específicamente al \(NO_2\), \textcite{soares_2025_17658760} como se puede ver en la figura \ref{fig:screenshot001}. Puesto que el tráfico rodado constituye la principal fuente de emisión de $NO_2$ en entornos urbanos, Madrid se erige como un caso de estudio idóneo para analizar la evolución temporal del contaminante y evaluar la eficacia de las políticas de mitigación implementadas en la capital.
+	\newline
+	
+	% TODO: \usepackage{graphicx} required
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\linewidth]{screenshot001}
+		\caption{Impacto en la salud pública: Tasa de mortalidad por todas las causas atribuibles a la exposición al \(NO_2\) (Muertes por cada 100.000 habitantes) en el año 2023.}
+		\label{fig:screenshot001}
+	\end{figure}
+	
+	
+	Para analizar esta serie temporal y su comportamiento en la ciudad, la literatura reciente ha desplegado un abanico de técnicas que van desde la metodología Box-Jenkins vista en clase hasta métodos basados en redes neuronales.
+	\newline
+	
+	En el ámbito de los modelos estocásticos, en \textcite{avila2023} abordaron la predicción mediante modelos ARIMA, destacando la necesidad de modelar explícitamente las múltiples estacionalidades (diaria, semanal y anual) para obtener pronósticos robustos. En otros trabajos como \textcite{orta_blanco2024} se utilizaron Procesos Gaussianos para estudiar el impacto de la zona de bajas emisiones Madrid Central. Este enfoque probabilístico se utiliza para cuantificar la incertidumbre del modelo y evaluar la efectividad de intervenciones públicas en la calidad del aire.
+	\newline
+	
+	Por otro lado, según la literatura por la complejidad no lineal de los datos ha impulsado el uso de redes neuronales. En \textcite{Convolutional} propusieron un modelo de aprendizaje profundo que integra redes convolucionales y LSTM bidireccionales, capturando simultáneamente dependencias espaciales y temporales. En una línea híbrida reciente, \textcite{mattera2024} desarrollaron un modelo de Redes Neuronales Autorregresivas Aumentadas por Factores. Su metodología mejora la capacidad predictiva al sintetizar la información de múltiples variables en factores latentes antes de alimentar la red neuronal.
+	\newline
+	
+	Finalmente, enfoques alternativos han optado por tratar la evolución diaria de la contaminación como un objeto matemático continuo. En \textcite{SANCHOVAL2026121741} aplicaron el Análisis de Datos Funcionales mediante B-splines. Esta técnica permite analizar la curva diaria de \(NO_2\) en su totalidad, facilitando la detección de patrones anómalos que los métodos discretos tradicionales podrían pasar por alto.
+	
 	
 	\section{Metodología}
-	Descripción detallada del modelo realizado, los datos utilizados y los procedimientos técnicos aplicados.
+	En este trabajo se aborda el análisis de la serie temporal mediante dos enfoques metodológicos clásicos. En un primer lugar, se asume un enfoque determinista basado en técnicas de alisado exponencial (suavizados). Posteriormente, se adopta una perspectiva estocástica para el ajuste de modelos SARIMA (Seasonal Autoregressive Integrated Moving Average). 
+	\newline
+	
+	Aún así, antes de la calibración de cualquiera de estos modelos, se llevará a cabo un Análisis Exploratorio de Datos (EDA) exhaustivo para comprender la estructura subyacente de la serie. Cabe destacar que, aunque la serie sea horaria para facilitar el análisis y estabilizar la serie se trabaja con las medias mensuales de la serie, fijando el periodo estacional en \(s=12\).
+
+	\subsection{Pipeline de trabajo y métricas de evaluación}
+	Para evaluar la capacidad de generalización de los modelos propuestos, se ha procedido a particionar los datos en dos subconjuntos independientes: un conjunto de entrenamiento, que abarca el periodo \(2010 \le t < 2024\), y un conjunto de validación, correspondiente al intervalo \(2024 \le t \le 2025\).
+	\newline
+	
+	Es fundamental destacar el rigor necesario en el preprocesamiento para evitar la filtración de datos. Todos los parámetros de las transformaciones necesarias (como el parámetro \(\lambda\) de la transformación Box-Cox o los órdenes de diferenciación) se estiman exclusivamente sobre el conjunto de entrenamiento. Posteriormente, estas transformaciones ya calibradas se aplican directamente sobre el conjunto de validación.
+	\newline
+	
+	Para cuantificar la bondad de ajuste y comparar el desempeño predictivo, se utilizará la Raíz del Error Cuadrático Medio (RMSE). La elección de esta métrica se justifica por dos razones principales:
+	\begin{itemize}
+		\item \textbf{Interpretabilidad dimensional:} Al aplicar la raíz cuadrada, el error se expresa en las mismas unidades físicas que la variable objetivo (concentración de \(NO_2\) en \(\mu g/m^3\)), facilitando su lectura directa.
+		\item \textbf{Penalización de grandes desvíos:} Dada la naturaleza cuadrática del error antes de la raíz, esta métrica penaliza de manera severa los errores de gran magnitud. Esto es crítico en el contexto de la calidad del aire, donde no detectar un pico de contaminación es más grave que pequeños errores en niveles bajos.
+	\end{itemize}
+	
+	La fórmula empleada es:
+	\begin{equation}
+		RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+	\end{equation}
+	
+
+	donde \(n\) denota el tamaño de la muestra de validación, \(y_i\) es el valor observado de la serie en el momento \(i\), e \(\hat{y}_i\) representa la predicción generada por el modelo para ese mismo instante.
+	
+	\subsection{Análisis exploratorio de los datos}
+	Metodológicamente, el estudio comienza con una descomposición aditiva-multiplicativa preliminar de la serie temporal. El objetivo de esta fase es inspeccionar visualmente la estructura subyacente de los datos, permitiendo identificar la presencia de tendencias deterministas y patrones estacionales marcados. Adicionalmente, la inspección gráfica permite una evaluación cualitativa de la heterocedasticidad, sugiriendo la necesidad de estabilizar la varianza.
+	\newline
+	
+	Para formalizar esta decisión, se calcula el parámetro óptimo \(\lambda\) de la transformación de Box-Cox que maximiza la verosimilitud logarítmica. Se establece un criterio de decisión práctico para mantener la interpretabilidad del modelo: si el valor estimado se encuentra próximo a la identidad, concretamente si \(\lambda \in [0.8, 1.2]\), se opta por no transformar la serie original. En caso contrario, es decir, si \(\lambda \in (-\infty, 0.8) \cup (1.2, \infty)\), se aplica la transformación para garantizar la homocedasticidad requerida por los modelos lineales. Cabe mencionar que la decisión final se valida iterativamente según la calidad de los residuos del modelo.
+	\newline
+	
+	Posteriormente, se aborda el requisito de estacionariedad mediante el análisis de diferenciación. Siguiendo la metodología estándar de Box-Jenkins \parencite{box2015}:
+	\begin{enumerate}
+		\item En primer lugar, se evalúa la necesidad de diferenciación estacional \(\nabla^D_{12}\) dada la periodicidad mensual de la serie.
+		\item Una vez aplicada la diferenciación estacional, si la serie resultante aún presenta tendencia, se aplican diferenciaciones regulares \(\nabla^d\) sucesivas hasta eliminarla.
+	\end{enumerate}
+	
+	Tras aplicar las diferenciaciones estacionales, se evalúa la estacionariedad de la serie mediante la prueba de Dickey-Fuller  \parencite{DickeyFullen}. Este contraste se formaliza a través del siguiente contraste de hipótesis:
+	\begin{align}
+		\begin{cases}
+			H_0:& \text{(Existe raíz unitaria, la serie no es estacionaria)} \\
+			H_1: & \text{(No existe raíz unitaria, la serie sí es estacionaria)}
+		\end{cases}
+	\end{align}
+	
+	Finalmente, cabe señalar que el tratamiento específico de valores atípicos y el análisis de intervención se reservan para una segunda etapa de refinamiento. Estos solo se incorporarán al modelo en caso de que el ajuste inicial no supere los diferentes tests de hipótesis.xº
+	\subsection{Ajuste de modelos deterministas: Métodos de Alisado Exponencial}
+	
+	Esta sección se elabora con ayuda del libro de \textcite{pena2010_cap2}. Para los suavizados se utiliza un suavizado exponencial que permite suavizar las fluctuaciones a corto plazo y resaltar la ciclotendencia. Para ello, se asignan ponderaciones a las observaciones que decaen exponencialmente de manera que los valores más recientes tienen mayor impacto en la estimacón.
+	\newline
+	
+	La elección del algoritmo de alisado específico depende de la estructura de la serie, la cual está intrínsecamente relacionada con las necesidades de diferenciación detectadas en la fase exploratoria:
+	
+	\begin{itemize}
+		\item \textbf{Ausencia de tendencia y estacionalidad (Nivel constante):} 
+		Si la serie no requiere diferenciaciones, se aplica el Alisado Exponencial Simple. Este método actualiza el nivel de la serie ($a_t$) mediante un parámetro de suavizado $\alpha$ (donde típicamente $0.05 \le \alpha \le 0.3$):
+		\begin{equation}
+			a_t = \alpha x_t + (1-\alpha)a_{t-1}, \ a_1=x_1
+		\end{equation}
+		\noindent Donde la predicción a un paso es
+		\begin{equation}
+			\hat{x}_{t+h} = a_t
+		\end{equation}
+		
+		\item \textbf{Presencia de tendencia (Diferenciación regular):} 
+		Si la serie presenta una tendencia lineal (requiere $\nabla^d x_t$), se emplea el Método de Holt (Suavizado Doble). Este modelo introduce una segunda ecuación para estimar la pendiente o tendencia local ($b_t$) mediante un parámetro $\beta$:
+		\begin{equation}
+			\begin{array}{l}
+				a_t = \alpha x_t + (1-\alpha)(a_{t-1} + b_{t-1}), \ 0 < \alpha < 1 \\
+				b_t = \beta (a_t - a_{t-1}) + (1-\beta) b_{t-1}, \ 0 < \beta < 1
+			\end{array}
+		\end{equation}
+		\noindent Las predicciones se generan proyectando la tendencia:
+		\begin{equation}
+			\hat{x}_{t+h} = a_t + h b_t
+		\end{equation} 
+		
+		\item \textbf{Presencia de estacionalidad y tendencia (Diferenciación estacional y regular):} 
+		Si la serie requiere diferenciación estacional ($\nabla^D_{s}$), se aplica el Método de Holt-Winters (Suavizado Triple). Este enfoque generaliza el anterior añadiendo una tercera ecuación y un parámetro $\gamma$ para actualizar los índices estacionales, permitiendo capturar patrones cíclicos como el comportamiento mensual del $NO_2$.
+		\begin{equation}
+			\begin{array}{l}
+				a_t = \alpha x_t/R_{t-s} + (1-\alpha)(a_{t-1} + b_{t-1}), \ 0 < \alpha < 1 \\
+				b_t = \beta (a_t - a_{t-1}) + (1-\beta) b_{t-1}, \ 0 < \beta < 1\\
+				R_t = \gamma(x_t/a_t)+(1-\gamma)R_{t-s}, \ 0 < \gamma < 1
+			\end{array}
+		\end{equation}
+		\noindent Las predicciones se generan proyectando la tendencia: 
+		\begin{equation}
+			\hat{x}_{t+h} = a_t + h b_t + R_{t-s+h}
+		\end{equation}
+	\end{itemize}
+	
+	
+	Aunque se ajuste el modelo en función de las diferenciaciones realizadas, como el coste computacional no es muy elevado se entrena cada uno de los suavizados en el conjunto de entrenamiento y se elije el que tieme menor RMSE en el conjunto de validación. El que tenga un error menor en esta métrica es el modelo elegido para realizar las predicciones a futuro.
+	\subsection{Ajuste de modelos estocasticos basados en modelos SARIMA}
+	Siguiendo la metodología descrita en \textcite{box2015}, el modelado estocástico se estructura en un proceso iterativo de tres etapas: identificación, estimación y validación. Una vez determinadas las transformaciones necesarias para garantizar la estacionariedad (diferenciación regular $d$ y estacional $D$, analizadas en el EDA), el objetivo se centra en identificar los órdenes de la parte autorregresiva y de medias móviles.
+	\newline
+	
+	La estructura general de un modelo estocástico estacional $\text{SARIMA}(p,d,q)(P,D,Q)_s$ viene definida por la ecuación:
+	
+	\begin{equation}
+		\phi_p(B)\Phi_P(B^s) \nabla^d \nabla^D_s X_t = \theta_q(B) \Theta_Q(B^s) \varepsilon_t
+	\end{equation}
+	
+	\noindent donde:
+	\begin{itemize}
+		\item $s$: es el periodo estacional (fijado en $s=12$ para datos mensuales).
+		\item $\phi_p(B)$ y $\theta_q(B)$: son los polinomios de la parte regular (AR y MA).
+		\item $\Phi_P(B^s)$ y $\Theta_Q(B^s)$: son los polinomios de la parte estacional.
+		\item $\varepsilon_t\sim \mathcal{N}(0,\sigma^2)$: es el término de error (ruido blanco).
+	\end{itemize}
+	
+	Para la identificación de los órdenes $(p, q, P, Q)$ se examinan los correlogramas estimados, aplicando el principio de parsimonia (buscar el modelo más simple posible, con órdenes $\le 3$):
+	
+	\begin{itemize}
+		\item \textbf{Parte Regular - Parámetro \(p\) (AR):} Se determina inspeccionando la Función de Autocorrelación Parcial ({FAP}). El orden \(p\) se estima contando el número de barras consecutivas significativas iniciales. Es decir, si se observan \(k\) barras que superan las bandas de confianza seguidas de un corte brusco, se sugiere un modelo AR(\(p=k\)). Por el contrario, si las barras presentan un decaimiento suave sin cortarse, indica la presencia de un componente de Medias Móviles (MA).
+		
+		\item \textbf{Parte Regular - Parámetro \(q\) (MA):} Se determina inspeccionando la Función de Autocorrelación Simple (\textbf{FAS}). El orden \(q\) corresponde al número de barras consecutivas significativas (omitiendo la barra del retardo 0). Si se encuentran \(k\) barras significativas seguidas de un corte, se sugiere un modelo MA(\(q=k\)). Si, en cambio, se observa un decaimiento lento en las barras, es indicativo de un proceso Autorregresivo (AR).
+		
+		\item \textbf{Parte Estacional - Parámetro \(P\) (SAR):} Se analizan las barras situadas en los {múltiplos del periodo estacional} (\(s, 2s, 3s \dots\)) en la {FAP}. El orden \(P\) será igual al número de barras estacionales consecutivas que sean significativas. Por ejemplo, si solo la barra en \(s=12\) es significativa y la de \(2s=24\) no, se sugiere un \(P=1\).
+		
+		\item \textbf{Parte Estacional - Parámetro \(Q\) (SMA):} Se analizan las barras situadas en los {múltiplos del periodo estacional} (\(s, 2s, 3s \dots\)) en la {FAS}. El orden \(Q\) se estima contando cuántas de estas barras estacionales son significativas antes de que la correlación se anule. Típicamente, una única barra significativa en el lag \(s\) indica un \(Q=1\).
+	\end{itemize}
+	
+	A partir de la identificación preliminar basada en el análisis cualitativo de los correlogramas, se procede a una etapa de refinamiento iterativo. Dado que el espacio de búsqueda es acotado con \(3^4=81\) posibles modelos, se ejecuta una exploración exhaustiva sobre las combinaciones de los órdenes \(p, q, P\) y \(Q\), manteniendo constantes los grados de diferenciación (\(d, D\)) determinados en la fase exploratoria.
+	\newline
+	
+	El criterio de selección en esta etapa es estricto en cuanto a la robustez estadística. Únicamente se consideran válidos aquellos modelos en los que {todos sus coeficientes estimados son estadísticamente significativos}. Para ello, se verifica que el p-valor asociado a cada coeficiente sea inferior al nivel de significación establecido (\(\alpha=0.05\)), rechazando cualquier especificación que incluya parámetros redundantes o no explicativos.
+	\newline
+	
+	Una vez seleccionados aquellos modelos cuyos coeficientes resultan estadísticamente significativos, se procede a la validación de los supuestos de los residuos. Para ello, se realizan los siguientes contrastes de hipótesis sobre los residuos ($\hat{\varepsilon}_t$) de los modelos ajustados donde se buscan p-valores superiores a $\alpha$:
+	
+	\begin{itemize}
+		\item \textbf{Comprobación de independencia (Test de Ljung-Box)} \parencite{LjungBox}. Se busca verificar la ausencia de autocorrelación serial en los residuos hasta un retardo $k$:
+		\begin{align}
+			\begin{cases}
+				H_0: \rho_1 = \dots = \rho_k = 0 & \text{(Independencia: Existe Ruido Blanco)} \\
+				H_1: \exists \rho_j \neq 0 & \text{(Existe autocorrelación, el modelo es incompleto)}
+			\end{cases}
+		\end{align}
+		
+		\item \textbf{Comprobación de homocedasticidad (Test de Breusch-Pagan)} \parencite{BreuschPagan}. Se evalúa si la varianza de los residuos es constante en el tiempo:
+		\begin{align}
+			\begin{cases}
+				H_0: \text{Var}(\varepsilon_t) = \sigma^2 & \text{(Homocedasticidad: Varianza constante)} \\
+				H_1: \text{Var}(\varepsilon_t) \neq \sigma^2 & \text{(Heterocedasticidad: Varianza volátil)}
+			\end{cases}
+		\end{align}
+		
+		\item \textbf{Comprobación de normalidad (Test de Kolmogorov-Smirnov corrección Lilliefors)} \parencite{KSL}. Se contrasta si la distribución empírica de los residuos se ajusta a una distribución Normal:
+		\begin{align}
+			\begin{cases}
+				H_0: \hat{\varepsilon}_t \sim N(\mu, \sigma^2) & \text{(Los residuos siguen una distribución Normal)} \\
+				H_1: \hat{\varepsilon}_t \nsim N(\mu, \sigma^2) & \text{(Los residuos NO siguen una distribución Normal)}
+			\end{cases}
+		\end{align}
+	\end{itemize}
+	
+	
+	Por último, se calcula la métrica del RMSE para todos los modelos con coeficientes significativos aunque no pasen todos los tests de hipótesis. De esta manera, se pueden comparar los modelos y verificar si no pasar alguno de los test es crítico para el funcionamiento del modelo.
+	\newpage
 	
 	\section{Resultados}
-	Presentación de los hallazgos obtenidos. Se pueden incluir tablas y figuras para mayor claridad.
+	En esta sección se presentan los resultados obtenidos del análisis de la serie temporal:
+	\subsection{Análisis exploratorio de los datos}
+	El primer paso es dividir la serie temporal en entrenamiento y validación tal como se puede ver en la figura \ref{fig:SERTEMP}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{grafica_serie_1.pdf}
+		\caption{Representación de la serie temporal del \(NO_2\) dividida en conjuntos de entrenamiento y test junto con la recta umbral del límite diario seguro de contaminante (\(25\mu g/m^3\)) según la Organización Mundial de la Salud. }
+		\label{fig:SERTEMP}
+	\end{figure}
 	
+	
+	Antes de proceder al modelado, se efectúa una descomposición de la serie mediante los métodos aditivo y multiplicativo. Aun así, de la función \texttt{decompose} solo se pueden obtener conclusiones sobre la tendencia de la serie debido a que la componente estacional no se calcula de manera fiable. En la Figura \ref{fig:Decompose}, correspondiente al esquema aditivo, se observa como la serie presenta una tendencia clara que justifica la necesidad de diferenciación en etapas posteriores.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{grafica_descomposicion_1.pdf}
+		\caption{Decomposición de la serie mediante la función \texttt{decompose} en R.}
+		\label{fig:Decompose}
+	\end{figure}
+	
+
+	La inspección visual de la serie original de la figura \ref{fig:SERTEMP} revela indicios de heterocedasticidad, observándose específicamente una contracción de la varianza en el tramo final de la muestra. Al calcular el parámetro óptimo de Box-Cox, se obtiene un valor de $\lambda \approx 0.797$. Si bien este valor se sitúa en la frontera del intervalo de no-transformación, se decide aplicar la transformación priorizando la evidencia visual. Como se aprecia en la Figura \ref{fig:SerieTRans}, la serie transformada tiene un comportamiento mucho más estable y homogéneo, lo cual facilitará el ajuste de los modelos posteriores.
+
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{grafica_serie_2.pdf}
+		\caption{Serie original transformada mediante Box-Cox con $\lambda = 0.7968376$.}
+		\label{fig:SerieTRans}
+	\end{figure}
+	
+	
+	Se analiza la presencia de valores atípicos en el conjunto de entrenamiento para evaluar su posible impacto en el ajuste del modelo. Como muestra la Figura \ref{fig:graficaoutliers1}, se detectan dos anomalías estadísticas: una leve antes de 2018 y otra más pronunciada en 2021. Siguiendo el protocolo mencionado en la sección de metodología, se decide mantener estos valores en la muestra, reservando su posible tratamiento únicamente para casos en los que la calidad predictiva del modelo sea baja.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{grafica_outliers_1}
+		\caption{Representación de los posibles valores atípicos en el conjunto de entrenamiento.}
+		\label{fig:graficaoutliers1}
+	\end{figure}
+
+\newpage
+Por último, el análisis exploratorio de los datos indica que se debe realizar una única {diferenciación estacional} y ninguna diferenciación regular. Para comprobar que, efectivamente, la serie ha sido desestacionalizada y es adecuada para el modelado, se realiza el Test de Dickey-Fuller donde se obtiene el siguiente resultado:
+\begin{equation}
+	\text{p-valor} = 0.02345 < \alpha = 0.05
+\end{equation}
+
+Dado que el p-valor es menor que el nivel de significación, rechazamos la hipótesis nula, lo que indica que la serie transformada es \textbf{estacionaria}.
+
+
+\subsection{Ajuste de modelos deteministas basados en suavizados}
+De la teoría el único modelo de suavizado que debería ajustarse es el suavizado Holt-Winters debido a que existe componente estacional. No obstante, como computacionalmente no es costoso, se ajustan todos los suavizados para ver cuales es razonable estudiar en la validación. Los resultados de las predicciones se pueden ver en la figura \ref{fig:comparacion_modelos}.
+
+	\begin{figure}[H]
+		\centering
+		% --- Fila 1 ---
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{simple.pdf}
+			\caption{Alisado Simple}
+			\label{fig:simple}
+		\end{subfigure}
+		\hfill % Espacio flexible entre columnas
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{doble.pdf}
+			\caption{Alisado Doble (Holt)}
+			\label{fig:doble}
+		\end{subfigure}
+		
+		\vspace{0.5cm} % Espacio vertical entre filas
+		
+		% --- Fila 2 ---
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{hw_add.pdf}
+			\caption{Alisado Triple (HW Aditivo)}
+			\label{fig:hw_add}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{hw_mult.pdf}
+			\caption{Alisado Triple (HW Multiplicativo)}
+			\label{fig:hw_mult}
+		\end{subfigure}
+		
+		\caption{Comparación de los ajustes realizados: (a) muestra el ajuste mediante Alisado Simple donde se puede ver que no existe predicción, (b) muestra el alisado de Holt donde se ve que las predicciones son razonables (c) y (d) representan los ajustes estacionales de Holt-Winters en sus variantes aditiva y multiplicativa respectivamente donde claramente se puede ver como el enfoque multiplicativo no es bueno prediciendo debido a la gran varianza que tiene asociada.}
+		\label{fig:comparacion_modelos}
+	\end{figure}
+	
+	Por tanto, se ha calculado el RMSE para los modelos de alisado de Holt y Holt-Winters aditivo, cuyos resultados se detallan en la Tabla \ref{tab:alis}. 	A la vista de las métricas, se concluye que el modelo óptimo es el {Holt-Winters aditivo}. Cabe destacar que este modelo presenta un mejor desempeño (menor error) en el conjunto de validación que en el de entrenamiento. La causa de este fenómeno se observa en la Figura \ref{fig:SerieTRans}: el inicio de la serie temporal muestra un comportamiento irregular que difiere de la tendencia general, lo cual penaliza el error promedio durante el entrenamiento. En contraste, el periodo de validación es más estable, permitiendo al modelo realizar predicciones más precisas.
+	\begin{table}[H]
+		\centering
+		\caption{Modelos de alisado escogidos.}
+		\label{tab:alis}
+		\begin{tabular}{lccccc}
+			\toprule
+			Modelo & Alpha & Beta & Gamma & RMSE Entrenamiento & RMSE Validación\\
+			\midrule
+			Holt-Winters aditivo & 0.1790 & 0.0085 & 0.3250&3.3308 & 2.8808\\
+			Holt & 0.2753 & 0.0001 & - & 3.0061&3.3431\\
+			\bottomrule
+		\end{tabular}
+
+	\end{table}
+	
+	
+
+	\subsection{Ajuste de modelos estocasticos basados en modelos SARIMA}
+	
+	En primer lugar, se ajusta el modelo manualmente a través la FAP y la FAS de la figura \ref{fig:correlogramas_fap_fas}. Del análisis visual se obtiene el siguiente modelo SARIMA:
+	\begin{equation}
+		(2,0,0)(2,1,0)_{[12]}
+	\end{equation}
+	\begin{figure}[H]
+		\centering
+		% --- Subfigura (a): FAP ---
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{fap.pdf}
+			\caption{Función de Autocorrelación Parcial (FAP)}
+			\label{fig:fap}
+		\end{subfigure}
+		\hfill % Espacio flexible en el medio
+		% --- Subfigura (b): FAS ---
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{fas.pdf}
+			\caption{Función de Autocorrelación Simple (FAS)}
+			\label{fig:fas}
+		\end{subfigure}
+		
+		\caption{Correlogramas estimados de la serie estacionaria. La gráfica (a) muestra la FAP, utilizada para identificar el orden autorregresivo ($p$ y $P$), mientras que la (b) muestra la FAS, utilizada para identificar el orden de medias móviles ($q$ y $Q$). }
+		\label{fig:correlogramas_fap_fas}
+	\end{figure}
+
+
+	Tal como se mencionó en la metodología una vez ajustado un modelo SARIMA inicial se realiza un barrido en todos los posibles modelos que tengan las mismas diferenciaciones para escoger aquel que tenga menor error con el conjunto de validación y que a su vez cumpla los tests de: independencia, homocedasticidad y normalidad. En la tabla \ref{tab:resultados} se pueden ver los resultados de ejecución y como ningún modelo cumple normalidad si se selecciona $\alpha=0.05$. No obstante, las celdas en amarillo se encuentran en la zona de significancia marginal (p-valor entre 0.01 y 0.05). Si la normalidad de un modelo se encuentra en la misma y se cumplen además las hipótesis de independencia y homocedasticidad, será considerado válido.
+	\begin{longtable}{lrrr}
+		% ---------------------------------------------------------
+		% HEADERS AND FOOTERS SECTION
+		% ---------------------------------------------------------
+		
+		% 1. Header for the very first page
+		\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA. En rojo se marcan aquellos p-valores con significancia menor a \(0.01\), en verde aquellos con significancia mayor a \(0.05\) y en amarillo el resto. Además, se marca en azul el modelo inicial estimado.} \label{tab:resultados}\\
+		\toprule
+		Modelo & Independencia & Homocedasticidad & Normalidad\\
+		\bottomrule
+		\endfirsthead
+		
+		% 2. Header for subsequent pages (if it splits)
+		\toprule
+		Modelo & Independencia & Homocedasticidad & Normalidad\\
+		\bottomrule
+		\endhead
+		
+		% 3. Footer for pages that are NOT the last one
+		\toprule
+		\endfoot
+		
+		% 4. Footer for the very last page
+		\toprule
+		\endlastfoot
+		
+		% ---------------------------------------------------------
+		% DATA SECTION (Your data goes here)
+		% ---------------------------------------------------------
+		\((0,0,0)(0,1,1)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.1672}} & \cellcolor{red!30}{\textcolor{black}{0.0006}}\\
+		\((0,0,0)(1,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.2488}} & \cellcolor{red!30}{\textcolor{black}{0.0058}}\\
+		\((0,0,0)(2,1,3)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.1369}} & \cellcolor{red!30}{\textcolor{black}{0.0017}}\\
+		\((0,0,1)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.4620}} & \cellcolor{yellow!30}{\textcolor{black}{0.0301}}\\
+		\((0,0,1)(0,1,1)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0001}} & \cellcolor{green!30}{\textcolor{black}{0.5475}} & \cellcolor{red!30}{\textcolor{black}{0.0006}}\\
+		\((0,0,1)(1,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.7799}} & \cellcolor{red!30}{\textcolor{black}{0.0052}}\\
+		\((0,0,1)(2,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0001}} & \cellcolor{green!30}{\textcolor{black}{0.7007}} & \cellcolor{red!30}{\textcolor{black}{0.0005}}\\
+		\((0,0,2)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.6523}} & \cellcolor{red!30}{\textcolor{black}{0.0017}}\\
+		\((0,0,2)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0152}} & \cellcolor{green!30}{\textcolor{black}{0.7426}} & \cellcolor{red!30}{\textcolor{black}{0.0010}}\\
+		\((0,0,2)(1,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0030}} & \cellcolor{green!30}{\textcolor{black}{0.9804}} & \cellcolor{yellow!30}{\textcolor{black}{0.0144}}\\
+		\((0,0,2)(2,1,0)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0143}} & \cellcolor{green!30}{\textcolor{black}{0.9332}} & \cellcolor{red!30}{\textcolor{black}{0.0075}}\\
+		\((0,0,3)(0,1,1)_{[12]} \)& \cellcolor{green!30}{\textcolor{black}{0.0794}} & \cellcolor{green!30}{\textcolor{black}{0.8809}} & \cellcolor{red!30}{\textcolor{black}{0.0036}}\\
+		\((0,0,3)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.0746}} & \cellcolor{green!30}{\textcolor{black}{0.9121}} & \cellcolor{red!30}{\textcolor{black}{0.0013}}\\
+		\((1,0,0)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.7017}} & \cellcolor{red!30}{\textcolor{black}{0.0058}}\\
+		\((1,0,0)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0122}} & \cellcolor{green!30}{\textcolor{black}{0.8926}} & \cellcolor{red!30}{\textcolor{black}{0.0028}}\\
+		\((1,0,0)(1,1,0)_{[12]} \)& \cellcolor{red!30}{\textcolor{black}{0.0004}} & \cellcolor{green!30}{\textcolor{black}{0.6947}} & \cellcolor{red!30}{\textcolor{black}{0.0017}}\\
+		\((1,0,0)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.0504}} & \cellcolor{green!30}{\textcolor{black}{0.7125}} & \cellcolor{red!30}{\textcolor{black}{0.0026}}\\
+		\((1,0,1)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0001}} & \cellcolor{green!30}{\textcolor{black}{0.9166}} & \cellcolor{red!30}{\textcolor{black}{0.0007}}\\
+		\((1,0,1)(0,1,1)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.3251}} & \cellcolor{green!30}{\textcolor{black}{0.8681}} & \cellcolor{red!30}{\textcolor{black}{0.0026}}\\
+		\((1,0,1)(1,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.1118}} & \cellcolor{green!30}{\textcolor{black}{0.6236}} & \cellcolor{yellow!30}{\textcolor{black}{0.0139}}\\
+		\((1,0,1)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.6094}} & \cellcolor{green!30}{\textcolor{black}{0.6972}} & \cellcolor{red!30}{\textcolor{black}{0.0075}}\\
+		\((2,0,0)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.9473}} & \cellcolor{red!30}{\textcolor{black}{0.0002}}\\
+		\((2,0,0)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0485}} & \cellcolor{green!30}{\textcolor{black}{0.7601}} & \cellcolor{red!30}{\textcolor{black}{0.0082}}\\
+		\((2,0,0)(1,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.0562}} & \cellcolor{green!30}{\textcolor{black}{0.5643}} & \cellcolor{yellow!30}{\textcolor{black}{0.0101}}\\
+		$\cellcolor{blue!60!cyan!30}(2,0,0)(2,1,0)_{[12]}$& \cellcolor{green!30}{\textcolor{black}{0.1683}} & \cellcolor{green!30}{\textcolor{black}{0.6077}} & \cellcolor{red!30}{\textcolor{black}{0.0033}}\\
+		\((2,0,1)(2,1,3)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0382}} & \cellcolor{green!30}{\textcolor{black}{0.8533}} & \cellcolor{red!30}{\textcolor{black}{0.0041}}\\
+		\((3,0,0)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0264}} & \cellcolor{green!30}{\textcolor{black}{0.6382}} & \cellcolor{yellow!30}{\textcolor{black}{0.0126}}\\
+		\((3,0,0)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.1897}} & \cellcolor{green!30}{\textcolor{black}{0.5170}} & \cellcolor{yellow!30}{\textcolor{black}{0.0297}}\\
+		\((3,0,0)(2,1,3)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0271}} & \cellcolor{green!30}{\textcolor{black}{0.5754}} & \cellcolor{yellow!30}{\textcolor{black}{0.0314}}\\
+		\((3,0,2)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.4104}} & \cellcolor{green!30}{\textcolor{black}{0.6916}} & \cellcolor{yellow!30}{\textcolor{black}{0.0172}}\\
+		
+	\end{longtable}
+	
+	A continuación, en la tabla \ref{tab:resultados2} se recogen los valores del error cuadrático medio de los distintos modelos candidatos. Entre estos, solo 4 candidatos cumplen todas las hipótesis (normalidad relajada) y se seleccionan en magenta aquellos con menor valor del error.
+
+
+
+	\begin{longtable}{lccccc}
+	
+	\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA junto a su error. En rojo se marcan aquellos p-valores con significancia menor a \(0.01\), en verde aquellos con significancia mayor a \(0.05\) y en amarillo el resto. Además, se marca en azul el modelo inicial estimado y en magenta los modelos propuestos.} 
+	\label{tab:resultados2}\\
+	\toprule
+	Modelo & Independencia & Homocedasticidad & Normalidad & RMSE (train) & RMSE (val)\\
+	\bottomrule
+	\endfirsthead
+	
+	% 2. Header for subsequent pages (if it splits)
+	\toprule
+	Modelo & Independencia & Homocedasticidad & Normalidad & RMSE (train) & RMSE (val)\\
+	\bottomrule
+	\endhead
+	
+	% 3. Footer for pages that are NOT the last one
+	\toprule
+	\endfoot
+	
+	% 4. Footer for the very last page
+	\toprule
+	\endlastfoot
+	
+	$(0,0,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.0531 & 3.5227\\
+	$(0,0,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.1000 & 3.2865\\
+	$(0,0,0)(2,1,3)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.9201 & 3.5917\\
+	$(0,0,1)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 4.2458 & 3.5412\\
+	$(0,0,1)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7374 & 3.8851\\
+	$(0,0,1)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.8509 & 3.3284\\
+	$(0,0,1)(2,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7432 & 3.5380\\
+	$(0,0,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.1365 & 3.6381\\
+	$(0,0,2)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5665 & 4.1563\\
+	$(0,0,2)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.6802 & 3.4406\\
+	$(0,0,2)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.6035 & 3.5702\\
+	$(0,0,3)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5081 & 4.2694\\
+	$(0,0,3)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5580 & 3.5936\\
+	$(1,0,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.1648 & 3.6213\\
+	$(1,0,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.4760 & 4.7911\\
+	$(1,0,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.6973 & 3.4407\\
+	$(1,0,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5537 & 3.7018\\
+	$(1,0,1)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.9917 & 4.1054\\
+	$(1,0,1)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.0437 & 4.0382\\
+	\cellcolor{magenta!30}{$(1,0,1)(1,1,0)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.4807 & 3.6146\\
+	$(1,0,1)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.3184 & 3.7311\\
+	$(2,0,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.0448 & 3.8182\\
+	$(2,0,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.3101 & 5.1379\\
+	\cellcolor{magenta!30}{$(2,0,0)(1,1,0)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.5523 & 3.5725\\
+	$\cellcolor{blue!60!cyan!30}(2,0,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.4424 & 3.7190\\
+	$(2,0,1)(2,1,3)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.1133 & 5.5767\\
+	$(3,0,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.2204 & 5.3714\\
+	$(3,0,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.3924 & 3.7661\\
+	$(3,0,0)(2,1,3)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 2.9320 & 6.4224\\
+	\cellcolor{magenta!30}{$(3,0,2)(2,1,0)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.3215 & 3.7474\\
+	
+\end{longtable}
+
+
+
+En la tabla \ref{taB:arimaFInal} se detallan los modelos SARIMA escogidos junto a sus ecuaciones obtenidas directamente a partir de los coeficientes de R en \texttt{fitArima}\footnote{
+	Nota sobre la parametrización en R: Para convertir la salida de la función \texttt{fitArima} a la ecuación teórica $\phi_p(B)\Phi_P(B^s) \nabla^d \nabla^D_s X_t = \theta_q(B) \Theta_Q(B^s) \varepsilon_t$, debe tenerse en cuenta que R utiliza una parametrización específica \parencite[Cap.~8.7]{hyndman2018forecasting}: 
+	\begin{equation}
+		(1 - \phi_1 B - \cdots - \phi_p B^p)(1 - \Phi_1 B^{s}-\dots-\Phi_P B^{sP}) y_t = (1 - \theta_1 B - \cdots - \theta_q B^q)(1-\Theta_1B^{s}-\dots-\Theta_QB^{sQ})\varepsilon_t
+	\end{equation}
+	\begin{itemize}
+		\item \textbf{Términos AR ($\phi$):} Los coeficientes \texttt{ar} en R corresponden directamente a los parámetros $\phi_i$ del polinomio autorregresivo $\phi_p(B)$.
+		\item \textbf{Términos MA ($\theta$):} Los coeficientes \texttt{ma} en R corresponden a $\theta_i$ en el polinomio de media móvil $\theta_q(B)$.
+	\item \textbf{Términos SAR ($\Phi$):} Los coeficientes etiquetados como \texttt{sar} en la salida de R corresponden a los parámetros $\Phi_i$ del componente autorregresivo estacional $\Phi_P(B^s)$.
+	\item \textbf{Términos SMA ($\Theta$):} Los coeficientes etiquetados como \texttt{sma} corresponden a los parámetros $\Theta_i$ del componente de media móvil estacional $\Theta_Q(B^s)$.
+	\end{itemize}
+}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{llcc}
+		\toprule
+		Modelo & Ecuación & RMSE (train) & RMSE (val)\\
+		\midrule
+		$(2,0,0)(1,1,0)$ & $(1 - 0.3201B^1 - 0.2784B^2)(1 + 0.4758B^{1s})
+		\nabla_s^1X_t $&&\\
+		&$= \epsilon_t$ & 3.5523 & 3.5725\\
+		\midrule
+		$(1,0,1)(1,1,0)$ & $(1 - 0.9086B^1)(1 + 0.4894B^{1s})
+		\nabla_s^1X_t $&&\\
+		&$= (1 + 0.6426B^1)\varepsilon_t$ & 3.4807 & 3.6146\\
+		\midrule
+		$(3,0,2)(2,1,0)$ & $(1 - 0.1276B^1 - 0.6914B^2 - 0.0362B^3)\cdot$& 3.3215 & 3.7474\\
+		&$(1 + 0.6231B^{1s} + 0.2932B^{2s})\nabla_s^1X_t$&& \\
+		&$= (1 - 0.1395B^1 + 0.4984B^2)\varepsilon_t$&& \\
+		\bottomrule
+	\end{tabular}
+	\caption{Modelos ARIMA escogidos para el estudio comparativo.}
+	\label{taB:arimaFInal}
+\end{table}
+
+\newpage
 	\section{Discusión}
-	Análisis de los resultados en comparación con la literatura consultada. Debe incluirse la \textbf{autoevaluación del modelo realizado}, analizando sus fortalezas y limitaciones.
+	Una vez obtenidos los resultados anteriores se entrenan ahora 4 modelos predictivos, uno basado en el suavizado de Holt-Winters y otros 3 basados en modelos ARIMA. Pues como se puede ver si se comparan las tablas \ref{tab:alis} y \ref{taB:arimaFInal} el modelo determinista mediante suavizados tiene una mejor generalización y ajusta mejor nuevos datos.
+	\newline
 	
+	No obstante, tal y como se vio en la figura \ref{fig:SerieTRans} los modelos cometen un gran error al principio del entrenamiento y posiblemente si se tomasen los datos a partir de 2012 los modelos ARIMA mejorarían significativamente.
+	\newline
+	
+	Por último, como el objetivo es predecir se reentrenan todos los modelos con todos los datos de la serie, es decir, se juntan los conjuntos de entrenamiento y validación en uno solo porque para una predicción a futuro los más relevante son los datos más recientes. En la figura \ref{fig:4forecast} se recogen las predicciones de estos 4 modelos.
+	
+	
+	\begin{figure}[H]
+		\centering
+		% --- Fila 1 ---
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{a.pdf}
+			\caption{Holt-Winters Aditivo}
+			\label{fig:pred_a}
+		\end{subfigure}
+		\hfill % Espacio flexible para separarlas
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{b.pdf}
+			\caption{SARIMA $(1,0,1)(1,1,0)_{[12]}$}
+			\label{fig:pred_b}
+		\end{subfigure}
+		
+		\vspace{0.5cm} % Espacio vertical entre filas
+		
+		% --- Fila 2 ---
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{c.pdf}
+			\caption{SARIMA $(2,0,0)(1,1,0)_{[12]}$}
+			\label{fig:pred_c}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{d.pdf}
+			\caption{SARIMA $(3,0,2)(2,1,0)_{[12]}$}
+			\label{fig:pred_d}
+		\end{subfigure}
+		
+		\caption{Predicciones de los 4 modelos ajustados:.}
+		\label{fig:4forecast}
+	\end{figure}
+\newpage
 	\section{Conclusiones}
-	Resumen de las aportaciones principales del trabajo y posibles líneas futuras.
+	El análisis de la serie temporal de las concentraciones de \(NO_2\) en la estación de Cuatro Caminos ha permitido caracterizar la dinámica de la contaminación urbana y evaluar la eficacia de distintas herramientas de predicción. A partir de los resultados obtenidos y la discusión planteada, se extraen las siguientes conclusiones principales:
 	
-	% --- Bibliografía ---
+	\begin{itemize}
+		\item \textbf{Dinámica de la serie y preprocesamiento:} El análisis exploratorio confirmó un periodo estacional mensual ($s=12$) y una tendencia decreciente a largo plazo, consistente con la implementación de políticas de reducción de emisiones en la última década. Asimismo, se identificó la naturaleza heterocedástica de los datos, requiriendo una transformación de Box-Cox ($\lambda \approx 0.8$) y una diferenciación estacional ($D=1$) para garantizar la estacionariedad, confirmada posteriormente mediante el test de Dickey-Fuller.
+		
+		\item \textbf{Superioridad de los métodos de alisado:} Los modelos deterministas demostraron una mayor capacidad de generalización que los estocásticos en este escenario específico. El modelo de \textbf{Holt-Winters aditivo} resultó ser el más robusto, alcanzando el menor error en el conjunto de validación ($\text{RMSE} = 2.88 \, \mu g/m^3$). 
+		
+		\item \textbf{Limitaciones de los modelos SARIMA:} Si bien se identificaron modelos estadísticamente significativos, estos presentaron dificultades para cumplir estrictamente con la hipótesis de normalidad en los residuos (Test de Kolmogorov-Smirnov). Esto sugiere que la serie contiene dinámicas no lineales o valores atípicos puntuales que la estructura lineal de los modelos ARIMA no logra capturar en su totalidad.
+		
+		\item \textbf{Impacto de la volatilidad histórica:} Se observó un fenómeno particular donde el error de entrenamiento fue sistemáticamente superior al de validación en el caso concreto de Holt-Winters. Esto evidencia que el comportamiento del contaminante antes de 2012 presentaba una variabilidad y unos niveles medios mucho más erráticos que en la actualidad. 
+	\end{itemize}
+	
+	Como líneas de trabajo futuro, se propone acotar el rango histórico de entrenamiento (por ejemplo, utilizando datos únicamente a partir de 2012) para reducir el ruido estructural y mejorar el ajuste de los modelos estocásticos. Asimismo, sería pertinente explorar modelos multivariantes (ARIMAX) que incorporen variables exógenas meteorológicas, o técnicas de aprendizaje profundo (Redes LSTM) capaces de modelar las no linealidades detectadas en los residuos.
+
 	\newpage
 	\printbibliography[title={Referencias}]
 	

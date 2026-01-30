@@ -1,17 +1,20 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'main.blg'
-[275] biber-MSWIN64:340> INFO - === 
-[350] Biber.pm:419> INFO - Reading 'main.bcf'
-[694] Biber.pm:979> INFO - Found 1 citekeys in bib section 0
-[721] Biber.pm:4419> INFO - Processing section 0
-[735] Biber.pm:4610> INFO - Looking for bibtex file 'referencias.bib' for section 0
-[824] bibtex.pm:1713> INFO - LaTeX decoding ...
-[840] bibtex.pm:1519> INFO - Found BibTeX data source 'referencias.bib'
-[935] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[935] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[935] Biber.pm:4239> INFO - Sorting list 'apa/apasortcite//global/global' of type 'entry' with template 'apa' and locale 'es-ES'
-[954] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[955] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[955] Biber.pm:4239> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'es-ES'
-[958] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[961] bbl.pm:763> INFO - Output to main.bbl
+[261] biber-MSWIN64:340> INFO - === 
+[376] Biber.pm:419> INFO - Reading 'main.bcf'
+[605] Biber.pm:979> INFO - Found 15 citekeys in bib section 0
+[654] Biber.pm:4419> INFO - Processing section 0
+[711] Biber.pm:4610> INFO - Looking for bibtex file 'referencias.bib' for section 0
+[787] bibtex.pm:1713> INFO - LaTeX decoding ...
+[826] bibtex.pm:1519> INFO - Found BibTeX data source 'referencias.bib'
+[1056] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1057] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1057] Biber.pm:4239> INFO - Sorting list 'apa/apasortcite//global/global' of type 'entry' with template 'apa' and locale 'es-ES'
+[1096] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1096] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1096] Biber.pm:4239> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'es-ES'
+[1150] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[1170] bbl.pm:763> INFO - Output to main.bbl
+[1170] Biber.pm:131> WARN - legacy month field 'April' in entry 'avila2023' is not an integer - this will probably not sort properly.
+[1170] Biber.pm:131> WARN - legacy month field 'September' in entry 'orta_blanco2024' is not an integer - this will probably not sort properly.
+[1171] Biber.pm:133> INFO - WARNINGS: 2
