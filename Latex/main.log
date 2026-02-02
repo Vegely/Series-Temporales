@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.27)  30 JAN 2026 23:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.27)  2 FEB 2026 18:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1306,10 +1306,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26491 strings out of 474486
- 529761 string characters out of 5743755
+ 26489 strings out of 474486
+ 529724 string characters out of 5743755
  1971542 words of memory out of 5000000
- 48381 multiletter control sequences out of 15000+600000
+ 48379 multiletter control sequences out of 15000+600000
  572910 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,18n,107p,1259b,2811s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1339,7 +1339,7 @@ Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10
 cm/cmtt10.pfb><C:/Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmtt9.pfb><C:/Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (16 pages, 528387 bytes).
+Output written on main.pdf (16 pages, 528407 bytes).
 PDF statistics:
  278 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

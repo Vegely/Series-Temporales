@@ -361,7 +361,7 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 	
 	En primer lugar, se ajusta el modelo manualmente a través la FAP y la FAS de la figura \ref{fig:correlogramas_fap_fas}. Del análisis visual se obtiene el siguiente modelo SARIMA:
 	\begin{equation}
-		(2,0,0)(2,1,0)_{[12]}
+		(2,0,0)(2,1,1)_{[12]}
 	\end{equation}
 	\begin{figure}[H]
 		\centering
@@ -386,14 +386,14 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 	\end{figure}
 
 
-	Tal como se mencionó en la metodología una vez ajustado un modelo SARIMA inicial se realiza un barrido en todos los posibles modelos que tengan las mismas diferenciaciones para escoger aquel que tenga menor error con el conjunto de validación y que a su vez cumpla los tests de: independencia, homocedasticidad y normalidad. En la tabla \ref{tab:resultados} se pueden ver los resultados de ejecución y como ningún modelo cumple normalidad si se selecciona $\alpha=0.05$. No obstante, las celdas en amarillo se encuentran en la zona de significancia marginal (p-valor entre 0.01 y 0.05). Si la normalidad de un modelo se encuentra en la misma y se cumplen además las hipótesis de independencia y homocedasticidad, será considerado válido.
+	Tal como se mencionó en la metodología una vez ajustado un modelo SARIMA inicial se realiza un barrido en todos los posibles modelos que tengan las mismas diferenciaciones para escoger aquel que tenga menor error con el conjunto de validación y que a su vez cumpla los tests de: independencia, homocedasticidad y normalidad. En la tabla \ref{tab:resultados} se pueden ver los resultados de ejecución y como ningún modelo cumple normalidad si se selecciona $\alpha=0.05$. No obstante, las celdas en amarillo se encuentran en la zona de significancia marginal (p-valor entre 0.01 y 0.05). Si la normalidad de un modelo se encuentra en la misma y se cumplen además las hipótesis de independencia y homocedasticidad, será considerado válido. Es relevante destacar que el modelo inicial estimado no aparece debido a que tiene alguno de sus coeficientes no significativo.
 	\begin{longtable}{lrrr}
 		% ---------------------------------------------------------
 		% HEADERS AND FOOTERS SECTION
 		% ---------------------------------------------------------
 		
 		% 1. Header for the very first page
-		\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA. En rojo se marcan aquellos p-valores con significancia menor a \(0.01\), en verde aquellos con significancia mayor a \(0.05\) y en amarillo el resto. Además, se marca en azul el modelo inicial estimado.} \label{tab:resultados}\\
+		\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA. En rojo se marcan aquellos p-valores con significancia menor a \(0.01\), en verde aquellos con significancia mayor a \(0.05\) y en amarillo el resto. } \label{tab:resultados}\\
 		\toprule
 		Modelo & Independencia & Homocedasticidad & Normalidad\\
 		\bottomrule
@@ -440,7 +440,7 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 		\((2,0,0)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.9473}} & \cellcolor{red!30}{\textcolor{black}{0.0002}}\\
 		\((2,0,0)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0485}} & \cellcolor{green!30}{\textcolor{black}{0.7601}} & \cellcolor{red!30}{\textcolor{black}{0.0082}}\\
 		\((2,0,0)(1,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.0562}} & \cellcolor{green!30}{\textcolor{black}{0.5643}} & \cellcolor{yellow!30}{\textcolor{black}{0.0101}}\\
-		$\cellcolor{blue!60!cyan!30}(2,0,0)(2,1,0)_{[12]}$& \cellcolor{green!30}{\textcolor{black}{0.1683}} & \cellcolor{green!30}{\textcolor{black}{0.6077}} & \cellcolor{red!30}{\textcolor{black}{0.0033}}\\
+		$(2,0,0)(2,1,0)_{[12]}$& \cellcolor{green!30}{\textcolor{black}{0.1683}} & \cellcolor{green!30}{\textcolor{black}{0.6077}} & \cellcolor{red!30}{\textcolor{black}{0.0033}}\\
 		\((2,0,1)(2,1,3)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0382}} & \cellcolor{green!30}{\textcolor{black}{0.8533}} & \cellcolor{red!30}{\textcolor{black}{0.0041}}\\
 		\((3,0,0)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0264}} & \cellcolor{green!30}{\textcolor{black}{0.6382}} & \cellcolor{yellow!30}{\textcolor{black}{0.0126}}\\
 		\((3,0,0)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.1897}} & \cellcolor{green!30}{\textcolor{black}{0.5170}} & \cellcolor{yellow!30}{\textcolor{black}{0.0297}}\\
@@ -455,7 +455,7 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 
 	\begin{longtable}{lccccc}
 	
-	\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA junto a su error. En rojo se marcan aquellos p-valores con significancia menor a \(0.01\), en verde aquellos con significancia mayor a \(0.05\) y en amarillo el resto. Además, se marca en azul el modelo inicial estimado y en magenta los modelos propuestos.} 
+	\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA junto a su error. En rojo se marcan aquellos p-valores con significancia menor a \(0.01\), en verde aquellos con significancia mayor a \(0.05\) y en amarillo el resto.} 
 	\label{tab:resultados2}\\
 	\toprule
 	Modelo & Independencia & Homocedasticidad & Normalidad & RMSE (train) & RMSE (val)\\
@@ -500,7 +500,7 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 	$(2,0,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.0448 & 3.8182\\
 	$(2,0,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.3101 & 5.1379\\
 	\cellcolor{magenta!30}{$(2,0,0)(1,1,0)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.5523 & 3.5725\\
-	$\cellcolor{blue!60!cyan!30}(2,0,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.4424 & 3.7190\\
+	$(2,0,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.4424 & 3.7190\\
 	$(2,0,1)(2,1,3)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.1133 & 5.5767\\
 	$(3,0,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.2204 & 5.3714\\
 	$(3,0,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.3924 & 3.7661\\
@@ -531,12 +531,12 @@ En la tabla \ref{taB:arimaFInal} se detallan los modelos SARIMA escogidos junto 
 		Modelo & Ecuación & RMSE (train) & RMSE (val)\\
 		\midrule
 		$(2,0,0)(1,1,0)$ & $(1 - 0.3201B^1 - 0.2784B^2)(1 + 0.4758B^{1s})
-		\nabla_s^1X_t $&&\\
-		&$= \epsilon_t$ & 3.5523 & 3.5725\\
+		\nabla_s^1X_t $& 3.5523 & 3.5725\\
+		&$= \epsilon_t$ &&\\
 		\midrule
 		$(1,0,1)(1,1,0)$ & $(1 - 0.9086B^1)(1 + 0.4894B^{1s})
-		\nabla_s^1X_t $&&\\
-		&$= (1 + 0.6426B^1)\varepsilon_t$ & 3.4807 & 3.6146\\
+		\nabla_s^1X_t $& 3.4807 & 3.6146\\
+		&$= (1 + 0.6426B^1)\varepsilon_t$&& \\
 		\midrule
 		$(3,0,2)(2,1,0)$ & $(1 - 0.1276B^1 - 0.6914B^2 - 0.0362B^3)\cdot$& 3.3215 & 3.7474\\
 		&$(1 + 0.6231B^{1s} + 0.2932B^{2s})\nabla_s^1X_t$&& \\
