@@ -402,7 +402,7 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 	\end{figure}
 
 
-	Tal como se mencionó en la metodología una vez ajustado un modelo SARIMA inicial se realiza un barrido en todos los posibles modelos que tengan las mismas diferenciaciones para escoger aquel que tenga menor error con el conjunto de validación y que a su vez cumpla los tests de: independencia, homocedasticidad y normalidad. \color{red}{En la tabla \ref{tab:resultados} se pueden ver los resultados de ejecución y como ningún modelo cumple normalidad si se selecciona $\alpha=0.05$. No obstante, las celdas en amarillo se encuentran en la zona de significancia marginal (p-valor entre 0.01 y 0.05). Si la normalidad de un modelo se encuentra en la misma y se cumplen además las hipótesis de independencia y homocedasticidad, será considerado válido. Es relevante destacar que el modelo inicial estimado no aparece debido a que tiene alguno de sus coeficientes no significativo}\color{black}{}.
+	Tal como se mencionó en la metodología una vez ajustado un modelo SARIMA inicial se realiza un barrido en todos los posibles modelos que tengan las mismas diferenciaciones para escoger aquel que tenga menor error con el conjunto de validación y que a su vez cumpla los tests de: independencia, homocedasticidad y normalidad. En la tabla \ref{tab:resultados} se pueden ver los resultados de ejecución y se seleccionan aquellos modelos que tengan todos sus p-valores significativos. Es relevante destacar que el modelo inicial estimado no aparece debido a que tiene alguno de sus coeficientes no significativo.
 	
 	
 	\begin{longtable}{lrrr}
@@ -411,7 +411,7 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 		% ---------------------------------------------------------
 		
 		% 1. Header for the very first page
-		\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA. En rojo se marcan aquellos p-valores con significancia menor a \(0.01\), en verde aquellos con significancia mayor a \(0.05\) y en amarillo el resto. } \label{tab:resultados}\\
+		\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA. En \colorbox{red!30}{rojo} se marcan aquellos p-valores con significancia menor a \(0.01\), en \colorbox{green!30}{verde} aquellos con significancia mayor a \(0.05\) y en \colorbox{yellow!30}{amarillo} el resto. } \label{tab:resultados}\\
 		\toprule
 		Modelo & Independencia & Homocedasticidad & Normalidad\\
 		\bottomrule
@@ -464,13 +464,13 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 		
 	\end{longtable}
 	
-	A continuación, en la tabla \ref{tab:resultados2} se recogen los valores del error cuadrático medio de los distintos modelos candidatos. Entre estos, solo 4 candidatos cumplen todas las hipótesis (normalidad relajada) y se seleccionan en magenta aquellos con menor valor del error.
+	A continuación, en la tabla \ref{tab:resultados2} se recogen los valores del error cuadrático medio de los distintos modelos candidatos. Entre estos se escogen aquellos con menor error cuadrático medio y que a su vez cumplan todos los tests de hipótesis.
 
 
 
 	\begin{longtable}{lccccc}
 	
-	\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA junto a su error. En rojo se marcan aquellos p-valores con significancia menor a \(0.01\), en verde aquellos con significancia mayor a \(0.05\) y en amarillo el resto.} 
+	\caption{Resultados de los tests de hipótesis realizados en los modelos SARIMA junto a su error.  En \colorbox{red!30}{rojo} se marcan aquellos p-valores con significancia menor a \(0.01\), en \colorbox{green!30}{verde} aquellos con significancia mayor a \(0.05\) y en \colorbox{yellow!30}{amarillo} el resto. En \colorbox{magenta!30}{magenta} se marcan los modelos escogidos para el análisis final. } 
 	\label{tab:resultados2}\\
 	\toprule
 	Modelo & Independencia & Homocedasticidad & Normalidad & RMSE (train) & RMSE (val)\\
@@ -491,33 +491,33 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 	\toprule
 	\endlastfoot
 	
-	$(0,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5457 & 5.4550\\
-	$(0,1,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.3247 & 9.0782\\
-	$(0,1,0)(2,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.0619 & 9.5741\\
-	$(0,1,1)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 4.0795 & 6.0074\\
-	$(0,1,1)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 2.9454 & 2.7503\\
-	$(0,1,1)(1,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.5437 & 4.0226\\
-	$(0,1,1)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.3651 & 3.8749\\
-	$(1,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.3816 & 9.6198\\
-	$(1,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.2226 & 4.0488\\
-	$(1,1,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7974 & 6.7103\\
-	$(1,1,0)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.6757 & 6.4169\\
-	$(1,1,1)(3,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.3217 & 3.4179\\
-	$(1,1,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 4.0219 & 10.0241\\
-	$(1,1,3)(3,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.3345 & 3.6614\\
-	$(2,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.2175 & 7.8195\\
-	$(2,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.1004 & 3.3025\\
-	$(2,1,0)(1,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7005 & 5.5063\\
-	$(2,1,0)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.5346 & 5.1008\\
-	$(2,1,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.9516 & 9.4623\\
-	$(2,1,2)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.2988 & 4.7930\\
-	$(2,1,2)(2,1,2)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 2.9812 & 2.7818\\
-	$(2,1,3)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 2.8897 & 2.9399\\
-	$(2,1,3)(1,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.4447 & 4.1129\\
-	$(3,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 4.1140 & 7.4902\\
-	$(3,1,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.0852 & 3.0863\\
-	$(3,1,0)(1,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.5949 & 5.1382\\
-	$(3,1,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.4197 & 4.7327\\
+$(0,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5457 & 5.4550\\
+$(0,1,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.3247 & 9.0782\\
+$(0,1,0)(2,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.0619 & 9.5741\\
+$(0,1,1)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 4.0795 & 6.0074\\
+$(0,1,1)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 2.9454 & 2.7503\\
+$(0,1,1)(1,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.5437 & 4.0226\\
+\cellcolor{magenta!30}{$(0,1,1)(2,1,0)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.3651 & 3.8749\\
+$(1,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.3816 & 9.6198\\
+$(1,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.2226 & 4.0488\\
+$(1,1,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7974 & 6.7103\\
+$(1,1,0)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.6757 & 6.4169\\
+\cellcolor{magenta!30}{$(1,1,1)(3,1,1)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.3217 & 3.4179\\
+$(1,1,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 4.0219 & 10.0241\\
+\cellcolor{magenta!30}{$(1,1,3)(3,1,0)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.3345 & 3.6614\\
+$(2,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.2175 & 7.8195\\
+$(2,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.1004 & 3.3025\\
+$(2,1,0)(1,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7005 & 5.5063\\
+$(2,1,0)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.5346 & 5.1008\\
+$(2,1,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.9516 & 9.4623\\
+$(2,1,2)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.2988 & 4.7930\\
+$(2,1,2)(2,1,2)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 2.9812 & 2.7818\\
+$(2,1,3)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 2.8897 & 2.9399\\
+$(2,1,3)(1,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.4447 & 4.1129\\
+$(3,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 4.1140 & 7.4902\\
+$(3,1,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.0852 & 3.0863\\
+$(3,1,0)(1,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.5949 & 5.1382\\
+$(3,1,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.4197 & 4.7327\\
 	
 \end{longtable}
 
@@ -542,17 +542,13 @@ En la tabla \ref{taB:arimaFInal} se detallan los modelos SARIMA escogidos junto 
 		\toprule
 		Modelo & Ecuación & RMSE (train) & RMSE (val)\\
 		\midrule
-		$(2,0,0)(1,1,0)$ & $(1 - 0.3201B^1 - 0.2784B^2)(1 + 0.4758B^{1s})
-		\nabla_s^1X_t $& 3.5523 & 3.5725\\
-		&$= \epsilon_t$ &&\\
+		$(1,1,1)(3,1,1)$ & $(1 + 0.1591B^1)(1 + 0.2474B^{1s} + 0.087B^{2s} + 0.0538B^{3s})$& 3.3217 & 3.4179\\
+		&$\nabla\nabla_sX_t = (1 + 0.5922B^1)(1 + 0.4787B^{1s})\varepsilon_t$	&&\\
 		\midrule
-		$(1,0,1)(1,1,0)$ & $(1 - 0.9086B^1)(1 + 0.4894B^{1s})
-		\nabla_s^1X_t $& 3.4807 & 3.6146\\
-		&$= (1 + 0.6426B^1)\varepsilon_t$&& \\
+		$(1,1,3)(3,1,0)$ & $(1 + 0.1894B^1)(1 + 0.6925B^{1s} + 0.4138B^{2s} + 0.12B^{3s})$&3.3345 & 3.6614\\
+		&$\nabla\nabla_sX_t = (1 + 0.5177B^1 + 0.2035B^2 - 0.0521B^3)\varepsilon_t$ &&\\
 		\midrule
-		$(3,0,2)(2,1,0)$ & $(1 - 0.1276B^1 - 0.6914B^2 - 0.0362B^3)\cdot$& 3.3215 & 3.7474\\
-		&$(1 + 0.6231B^{1s} + 0.2932B^{2s})\nabla_s^1X_t$&& \\
-		&$= (1 - 0.1395B^1 + 0.4984B^2)\varepsilon_t$&& \\
+		$(0,1,1)(2,1,0)$ & $(1 + 0.6514B^{1s} + 0.3066B^{2s})\nabla\nabla_sX_t = (1 + 0.7121B^1)\varepsilon_t$ & 3.3651 & 3.8749\\
 		\bottomrule
 	\end{tabular}
 	\caption{Modelos ARIMA escogidos para el estudio comparativo.}
@@ -583,7 +579,7 @@ En la tabla \ref{taB:arimaFInal} se detallan los modelos SARIMA escogidos junto 
 		\begin{subfigure}[b]{0.48\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{b.pdf}
-			\caption{SARIMA $(1,0,1)(1,1,0)_{[12]}$}
+			\caption{SARIMA $(0,1,1)(2,1,0)_{[12]}$}
 			\label{fig:pred_b}
 		\end{subfigure}
 		
@@ -593,14 +589,14 @@ En la tabla \ref{taB:arimaFInal} se detallan los modelos SARIMA escogidos junto 
 		\begin{subfigure}[b]{0.48\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{c.pdf}
-			\caption{SARIMA $(2,0,0)(1,1,0)_{[12]}$}
+			\caption{SARIMA $(1,1,1)(3,1,1)_{[12]}$}
 			\label{fig:pred_c}
 		\end{subfigure}
 		\hfill
 		\begin{subfigure}[b]{0.48\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{d.pdf}
-			\caption{SARIMA $(3,0,2)(2,1,0)_{[12]}$}
+			\caption{SARIMA $(1,1,3)(3,1,0)_{[12]}$}
 			\label{fig:pred_d}
 		\end{subfigure}
 		
