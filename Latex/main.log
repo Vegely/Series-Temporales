@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.27)  2 FEB 2026 18:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.27)  4 FEB 2026 20:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1167,118 +1167,129 @@ Package pdftex.def Info: grafica_descomposicion_1.pdf  used on input line 266.
 <grafica_serie_2.pdf, id=66, 418.56375pt x 364.36125pt>
 File: grafica_serie_2.pdf Graphic file (type pdf)
 <use grafica_serie_2.pdf>
-Package pdftex.def Info: grafica_serie_2.pdf  used on input line 277.
-(pdftex.def)             Requested size: 227.62206pt x 198.14206pt.
+Package pdftex.def Info: grafica_serie_2.pdf  used on input line 279.
+(pdftex.def)             Requested size: 218.51521pt x 190.21393pt.
 <grafica_outliers_1.pdf, id=67, 418.56375pt x 364.36125pt>
 File: grafica_outliers_1.pdf Graphic file (type pdf)
 <use grafica_outliers_1.pdf>
 Package pdftex.def Info: grafica_outliers_1.pdf  used on input line 287.
-(pdftex.def)             Requested size: 273.14923pt x 237.77715pt.
- [9 <./grafica_serie_2.pdf> <./grafica_outliers_1.pdf>]
-<simple.pdf, id=85, 461.725pt x 246.9225pt>
+(pdftex.def)             Requested size: 218.51521pt x 190.21393pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--300
+
+ []
+
+<diferenciada.pdf, id=68, 461.725pt x 346.29375pt>
+File: diferenciada.pdf Graphic file (type pdf)
+<use diferenciada.pdf>
+Package pdftex.def Info: diferenciada.pdf  used on input line 311.
+(pdftex.def)             Requested size: 250.38564pt x 187.78844pt.
+[9 <./grafica_serie_2.pdf> <./grafica_outliers_1.pdf>]
+<simple.pdf, id=86, 461.725pt x 246.9225pt>
 File: simple.pdf Graphic file (type pdf)
 <use simple.pdf>
-Package pdftex.def Info: simple.pdf  used on input line 309.
+Package pdftex.def Info: simple.pdf  used on input line 325.
 (pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
-<doble.pdf, id=86, 461.725pt x 246.9225pt>
+<doble.pdf, id=87, 461.725pt x 246.9225pt>
 File: doble.pdf Graphic file (type pdf)
 <use doble.pdf>
-Package pdftex.def Info: doble.pdf  used on input line 316.
+Package pdftex.def Info: doble.pdf  used on input line 332.
 (pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
-<hw_add.pdf, id=87, 461.725pt x 246.9225pt>
+<hw_add.pdf, id=88, 461.725pt x 246.9225pt>
 File: hw_add.pdf Graphic file (type pdf)
 <use hw_add.pdf>
-Package pdftex.def Info: hw_add.pdf  used on input line 326.
+Package pdftex.def Info: hw_add.pdf  used on input line 342.
 (pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
-<hw_mult.pdf, id=88, 461.725pt x 246.9225pt>
+<hw_mult.pdf, id=89, 461.725pt x 246.9225pt>
 File: hw_mult.pdf Graphic file (type pdf)
 <use hw_mult.pdf>
-Package pdftex.def Info: hw_mult.pdf  used on input line 333.
+Package pdftex.def Info: hw_mult.pdf  used on input line 349.
 (pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
 
-Overfull \hbox (5.52695pt too wide) in paragraph at lines 347--355
+Overfull \hbox (5.52695pt too wide) in paragraph at lines 363--371
  [][] 
  []
 
-[10 <./simple.pdf> <./doble.pdf> <./hw_add.pdf> <./hw_mult.pdf>]
-<fap.pdf, id=116, 461.725pt x 246.9225pt>
+[10 <./diferenciada.pdf> <./simple.pdf> <./doble.pdf> <./hw_add.pdf> <./hw_mult
+.pdf>]
+<fap.pdf, id=126, 461.725pt x 346.29375pt>
 File: fap.pdf Graphic file (type pdf)
 <use fap.pdf>
-Package pdftex.def Info: fap.pdf  used on input line 371.
-(pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
-<fas.pdf, id=117, 461.725pt x 246.9225pt>
+Package pdftex.def Info: fap.pdf  used on input line 387.
+(pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
+<fas.pdf, id=127, 461.725pt x 346.29375pt>
 File: fas.pdf Graphic file (type pdf)
 <use fas.pdf>
-Package pdftex.def Info: fas.pdf  used on input line 379.
-(pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
+Package pdftex.def Info: fas.pdf  used on input line 395.
+(pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
  [11 <./fap.pdf> <./fas.pdf>]
-Overfull \hbox (36.35875pt too wide) in alignment at lines 456--463
+Overfull \hbox (36.35875pt too wide) in alignment at lines 471--478
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (36.35875pt too wide) in alignment at lines 463--469
+Overfull \hbox (36.35875pt too wide) in alignment at lines 478--484
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (36.35875pt too wide) in alignment at lines 469--473
+Overfull \hbox (36.35875pt too wide) in alignment at lines 484--488
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (36.35875pt too wide) in alignment at lines 473--477
+Overfull \hbox (36.35875pt too wide) in alignment at lines 488--492
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (36.35875pt too wide) in alignment at lines 477--510
+Overfull \hbox (36.35875pt too wide) in alignment at lines 492--522
  [] [] [] [] [] [] 
  []
 
 [12]
-Overfull \hbox (17.18622pt too wide) in paragraph at lines 529--546
+Overfull \hbox (17.18622pt too wide) in paragraph at lines 541--558
  [][] 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 552--554
+Underfull \hbox (badness 10000) in paragraph at lines 564--566
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 555--557
+Underfull \hbox (badness 10000) in paragraph at lines 567--569
 
  []
 
-<a.pdf, id=147, 461.725pt x 176.66pt>
+<a.pdf, id=157, 461.725pt x 176.66pt>
 File: a.pdf Graphic file (type pdf)
 <use a.pdf>
-Package pdftex.def Info: a.pdf  used on input line 566.
+Package pdftex.def Info: a.pdf  used on input line 578.
 (pdftex.def)             Requested size: 218.51521pt x 83.60437pt.
-<b.pdf, id=148, 461.725pt x 176.66pt>
+<b.pdf, id=158, 461.725pt x 176.66pt>
 File: b.pdf Graphic file (type pdf)
 <use b.pdf>
-Package pdftex.def Info: b.pdf  used on input line 573.
+Package pdftex.def Info: b.pdf  used on input line 585.
 (pdftex.def)             Requested size: 218.51521pt x 83.60437pt.
-<c.pdf, id=149, 461.725pt x 176.66pt>
+<c.pdf, id=159, 461.725pt x 176.66pt>
 File: c.pdf Graphic file (type pdf)
 <use c.pdf>
-Package pdftex.def Info: c.pdf  used on input line 583.
+Package pdftex.def Info: c.pdf  used on input line 595.
 (pdftex.def)             Requested size: 218.51521pt x 83.60437pt.
-<d.pdf, id=150, 461.725pt x 176.66pt>
+<d.pdf, id=160, 461.725pt x 176.66pt>
 File: d.pdf Graphic file (type pdf)
 <use d.pdf>
-Package pdftex.def Info: d.pdf  used on input line 590.
+Package pdftex.def Info: d.pdf  used on input line 602.
 (pdftex.def)             Requested size: 218.51521pt x 83.60437pt.
 [14 <./a.pdf> <./b.pdf> <./c.pdf> <./d.pdf>] [15]
-Overfull \hbox (38.36539pt too wide) in paragraph at lines 615--615
+Overfull \hbox (38.36539pt too wide) in paragraph at lines 627--627
 \OT1/cmr/m/n/10.95 2026]. $https : / / datos . madrid . es / portal / site / eg
 ob / menuitem . c05c1f754a33a9fbe4b2e4b284f1a5a0 /
  []
 
 
-Overfull \hbox (0.8903pt too wide) in paragraph at lines 615--615
+Overfull \hbox (0.8903pt too wide) in paragraph at lines 627--627
 [][]\OT1/cmr/m/n/10.95 World Health Or-ga-ni-za-tion. (2021). \OT1/cmr/m/it/10.
 95 WHO glo-bal air qua-lity gui-de-li-nes: par-ti-cu-la-te mat-ter (PM2.5
  []
@@ -1306,10 +1317,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26489 strings out of 474486
- 529724 string characters out of 5743755
- 1971542 words of memory out of 5000000
- 48379 multiletter control sequences out of 15000+600000
+ 26501 strings out of 474486
+ 530014 string characters out of 5743755
+ 1970542 words of memory out of 5000000
+ 48391 multiletter control sequences out of 15000+600000
  572910 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,18n,107p,1259b,2811s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1339,9 +1350,9 @@ Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10
 cm/cmtt10.pfb><C:/Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmtt9.pfb><C:/Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (16 pages, 528407 bytes).
+Output written on main.pdf (16 pages, 534217 bytes).
 PDF statistics:
- 278 PDF objects out of 1000 (max. 8388607)
+ 288 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 88 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

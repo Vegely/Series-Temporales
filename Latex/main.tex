@@ -271,31 +271,47 @@
 
 	La inspección visual de la serie original de la figura \ref{fig:SERTEMP} revela indicios de heterocedasticidad, observándose específicamente una contracción de la varianza en el tramo final de la muestra. Al calcular el parámetro óptimo de Box-Cox, se obtiene un valor de $\lambda \approx 0.797$. Si bien este valor se sitúa en la frontera del intervalo de no-transformación, se decide aplicar la transformación priorizando la evidencia visual. Como se aprecia en la Figura \ref{fig:SerieTRans}, la serie transformada tiene un comportamiento mucho más estable y homogéneo, lo cual facilitará el ajuste de los modelos posteriores.
 
-	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.5\textwidth]{grafica_serie_2.pdf}
-		\caption{Serie original transformada mediante Box-Cox con $\lambda = 0.7968376$.}
-		\label{fig:SerieTRans}
+		% Subfigure (a)
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{grafica_serie_2.pdf}
+			\caption{Serie original transformada mediante Box-Cox con $\lambda = 0.7968376$.}
+			\label{fig:SerieTRans}
+		\end{subfigure}
+		\hfill % Adds space between the two images
+		% Subfigure (b)
+		\begin{subfigure}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{grafica_outliers_1}
+			\caption{Representación de los posibles valores atípicos en el conjunto de entrenamiento.}
+			\label{fig:graficaoutliers1}
+		\end{subfigure}
+		
+		\caption{Análisis de la serie y valores atípicos.} % Optional main caption
+		\label{fig:analisis_completo}
 	\end{figure}
 	
+
 	
 	Se analiza la presencia de valores atípicos en el conjunto de entrenamiento para evaluar su posible impacto en el ajuste del modelo. Como muestra la Figura \ref{fig:graficaoutliers1}, se detectan dos anomalías estadísticas: una leve antes de 2018 y otra más pronunciada en 2021. Siguiendo el protocolo mencionado en la sección de metodología, se decide mantener estos valores en la muestra, reservando su posible tratamiento únicamente para casos en los que la calidad predictiva del modelo sea baja.
+	\newline
 
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.6\linewidth]{grafica_outliers_1}
-		\caption{Representación de los posibles valores atípicos en el conjunto de entrenamiento.}
-		\label{fig:graficaoutliers1}
-	\end{figure}
 
-\newpage
-Por último, el análisis exploratorio de los datos indica que se debe realizar una única {diferenciación estacional} y ninguna diferenciación regular. Para comprobar que, efectivamente, la serie ha sido desestacionalizada y es adecuada para el modelado, se realiza el Test de Dickey-Fuller donde se obtiene el siguiente resultado:
+Por último, el análisis exploratorio de los datos indica que se debe realizar una  diferenciación estacional y una diferenciación regular. Para comprobar que, efectivamente, la serie ha sido desestacionalizada y es adecuada para el modelado, se realiza el Test de Dickey-Fuller donde se obtiene el siguiente resultado:
 \begin{equation}
-	\text{p-valor} = 0.02345 < \alpha = 0.05
+	\text{p-valor} = 0.01 < \alpha = 0.05
 \end{equation}
 
-Dado que el p-valor es menor que el nivel de significación, rechazamos la hipótesis nula, lo que indica que la serie transformada es \textbf{estacionaria}.
+Dado que el p-valor es menor que el nivel de significación, rechazamos la hipótesis nula, lo que indica que la serie transformada es estacionaria. Además, en la figura \ref{fig:diferenciada} se puede ver como claramente se ha quitado la tendencia.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.55\linewidth]{diferenciada}
+	\caption{Representación de la serie transformada con las diferenciaciones regular y estacional realizadas.}
+	\label{fig:diferenciada}
+\end{figure}
 
 
 \subsection{Ajuste de modelos deteministas basados en suavizados}
@@ -335,7 +351,7 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 			\label{fig:hw_mult}
 		\end{subfigure}
 		
-		\caption{Comparación de los ajustes realizados: (a) muestra el ajuste mediante Alisado Simple donde se puede ver que no existe predicción, (b) muestra el alisado de Holt donde se ve que las predicciones son razonables (c) y (d) representan los ajustes estacionales de Holt-Winters en sus variantes aditiva y multiplicativa respectivamente donde claramente se puede ver como el enfoque multiplicativo no es bueno prediciendo debido a la gran varianza que tiene asociada.}
+		\caption{Comparación de los ajustes realizados: (a) muestra el ajuste mediante Alisado Simple donde se puede ver que no existe predicción, (b) muestra el alisado de Holt donde se ve que las predicciones son razonables (c) y (d) representan los ajustes estacionales de Holt-Winters en sus variantes aditiva y multiplicativa respectivamente, donde claramente se puede ver como el enfoque multiplicativo no es bueno prediciendo debido a la gran varianza que tiene asociada.}
 		\label{fig:comparacion_modelos}
 	\end{figure}
 	
@@ -361,7 +377,7 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 	
 	En primer lugar, se ajusta el modelo manualmente a través la FAP y la FAS de la figura \ref{fig:correlogramas_fap_fas}. Del análisis visual se obtiene el siguiente modelo SARIMA:
 	\begin{equation}
-		(2,0,0)(2,1,1)_{[12]}
+		(0,1,1)(1,1,1)_{[12]}
 	\end{equation}
 	\begin{figure}[H]
 		\centering
@@ -386,7 +402,9 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 	\end{figure}
 
 
-	Tal como se mencionó en la metodología una vez ajustado un modelo SARIMA inicial se realiza un barrido en todos los posibles modelos que tengan las mismas diferenciaciones para escoger aquel que tenga menor error con el conjunto de validación y que a su vez cumpla los tests de: independencia, homocedasticidad y normalidad. En la tabla \ref{tab:resultados} se pueden ver los resultados de ejecución y como ningún modelo cumple normalidad si se selecciona $\alpha=0.05$. No obstante, las celdas en amarillo se encuentran en la zona de significancia marginal (p-valor entre 0.01 y 0.05). Si la normalidad de un modelo se encuentra en la misma y se cumplen además las hipótesis de independencia y homocedasticidad, será considerado válido. Es relevante destacar que el modelo inicial estimado no aparece debido a que tiene alguno de sus coeficientes no significativo.
+	Tal como se mencionó en la metodología una vez ajustado un modelo SARIMA inicial se realiza un barrido en todos los posibles modelos que tengan las mismas diferenciaciones para escoger aquel que tenga menor error con el conjunto de validación y que a su vez cumpla los tests de: independencia, homocedasticidad y normalidad. \color{red}{En la tabla \ref{tab:resultados} se pueden ver los resultados de ejecución y como ningún modelo cumple normalidad si se selecciona $\alpha=0.05$. No obstante, las celdas en amarillo se encuentran en la zona de significancia marginal (p-valor entre 0.01 y 0.05). Si la normalidad de un modelo se encuentra en la misma y se cumplen además las hipótesis de independencia y homocedasticidad, será considerado válido. Es relevante destacar que el modelo inicial estimado no aparece debido a que tiene alguno de sus coeficientes no significativo}\color{black}{}.
+	
+	
 	\begin{longtable}{lrrr}
 		% ---------------------------------------------------------
 		% HEADERS AND FOOTERS SECTION
@@ -416,36 +434,33 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 		% ---------------------------------------------------------
 		% DATA SECTION (Your data goes here)
 		% ---------------------------------------------------------
-		\((0,0,0)(0,1,1)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.1672}} & \cellcolor{red!30}{\textcolor{black}{0.0006}}\\
-		\((0,0,0)(1,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.2488}} & \cellcolor{red!30}{\textcolor{black}{0.0058}}\\
-		\((0,0,0)(2,1,3)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.1369}} & \cellcolor{red!30}{\textcolor{black}{0.0017}}\\
-		\((0,0,1)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.4620}} & \cellcolor{yellow!30}{\textcolor{black}{0.0301}}\\
-		\((0,0,1)(0,1,1)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0001}} & \cellcolor{green!30}{\textcolor{black}{0.5475}} & \cellcolor{red!30}{\textcolor{black}{0.0006}}\\
-		\((0,0,1)(1,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.7799}} & \cellcolor{red!30}{\textcolor{black}{0.0052}}\\
-		\((0,0,1)(2,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0001}} & \cellcolor{green!30}{\textcolor{black}{0.7007}} & \cellcolor{red!30}{\textcolor{black}{0.0005}}\\
-		\((0,0,2)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.6523}} & \cellcolor{red!30}{\textcolor{black}{0.0017}}\\
-		\((0,0,2)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0152}} & \cellcolor{green!30}{\textcolor{black}{0.7426}} & \cellcolor{red!30}{\textcolor{black}{0.0010}}\\
-		\((0,0,2)(1,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0030}} & \cellcolor{green!30}{\textcolor{black}{0.9804}} & \cellcolor{yellow!30}{\textcolor{black}{0.0144}}\\
-		\((0,0,2)(2,1,0)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0143}} & \cellcolor{green!30}{\textcolor{black}{0.9332}} & \cellcolor{red!30}{\textcolor{black}{0.0075}}\\
-		\((0,0,3)(0,1,1)_{[12]} \)& \cellcolor{green!30}{\textcolor{black}{0.0794}} & \cellcolor{green!30}{\textcolor{black}{0.8809}} & \cellcolor{red!30}{\textcolor{black}{0.0036}}\\
-		\((0,0,3)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.0746}} & \cellcolor{green!30}{\textcolor{black}{0.9121}} & \cellcolor{red!30}{\textcolor{black}{0.0013}}\\
-		\((1,0,0)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.7017}} & \cellcolor{red!30}{\textcolor{black}{0.0058}}\\
-		\((1,0,0)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0122}} & \cellcolor{green!30}{\textcolor{black}{0.8926}} & \cellcolor{red!30}{\textcolor{black}{0.0028}}\\
-		\((1,0,0)(1,1,0)_{[12]} \)& \cellcolor{red!30}{\textcolor{black}{0.0004}} & \cellcolor{green!30}{\textcolor{black}{0.6947}} & \cellcolor{red!30}{\textcolor{black}{0.0017}}\\
-		\((1,0,0)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.0504}} & \cellcolor{green!30}{\textcolor{black}{0.7125}} & \cellcolor{red!30}{\textcolor{black}{0.0026}}\\
-		\((1,0,1)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0001}} & \cellcolor{green!30}{\textcolor{black}{0.9166}} & \cellcolor{red!30}{\textcolor{black}{0.0007}}\\
-		\((1,0,1)(0,1,1)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.3251}} & \cellcolor{green!30}{\textcolor{black}{0.8681}} & \cellcolor{red!30}{\textcolor{black}{0.0026}}\\
-		\((1,0,1)(1,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.1118}} & \cellcolor{green!30}{\textcolor{black}{0.6236}} & \cellcolor{yellow!30}{\textcolor{black}{0.0139}}\\
-		\((1,0,1)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.6094}} & \cellcolor{green!30}{\textcolor{black}{0.6972}} & \cellcolor{red!30}{\textcolor{black}{0.0075}}\\
-		\((2,0,0)(0,1,0)_{[12]}\) & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.9473}} & \cellcolor{red!30}{\textcolor{black}{0.0002}}\\
-		\((2,0,0)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0485}} & \cellcolor{green!30}{\textcolor{black}{0.7601}} & \cellcolor{red!30}{\textcolor{black}{0.0082}}\\
-		\((2,0,0)(1,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.0562}} & \cellcolor{green!30}{\textcolor{black}{0.5643}} & \cellcolor{yellow!30}{\textcolor{black}{0.0101}}\\
-		$(2,0,0)(2,1,0)_{[12]}$& \cellcolor{green!30}{\textcolor{black}{0.1683}} & \cellcolor{green!30}{\textcolor{black}{0.6077}} & \cellcolor{red!30}{\textcolor{black}{0.0033}}\\
-		\((2,0,1)(2,1,3)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0382}} & \cellcolor{green!30}{\textcolor{black}{0.8533}} & \cellcolor{red!30}{\textcolor{black}{0.0041}}\\
-		\((3,0,0)(0,1,1)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0264}} & \cellcolor{green!30}{\textcolor{black}{0.6382}} & \cellcolor{yellow!30}{\textcolor{black}{0.0126}}\\
-		\((3,0,0)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.1897}} & \cellcolor{green!30}{\textcolor{black}{0.5170}} & \cellcolor{yellow!30}{\textcolor{black}{0.0297}}\\
-		\((3,0,0)(2,1,3)_{[12]}\) & \cellcolor{yellow!30}{\textcolor{black}{0.0271}} & \cellcolor{green!30}{\textcolor{black}{0.5754}} & \cellcolor{yellow!30}{\textcolor{black}{0.0314}}\\
-		\((3,0,2)(2,1,0)_{[12]}\) & \cellcolor{green!30}{\textcolor{black}{0.4104}} & \cellcolor{green!30}{\textcolor{black}{0.6916}} & \cellcolor{yellow!30}{\textcolor{black}{0.0172}}\\
+	$(0,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0001}} & \cellcolor{green!30}{\textcolor{black}{0.5007}} & \cellcolor{red!30}{\textcolor{black}{0.0000}}\\
+	$(0,1,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.1996}} & \cellcolor{red!30}{\textcolor{black}{0.0001}}\\
+	$(0,1,0)(2,1,0)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0001}} & \cellcolor{green!30}{\textcolor{black}{0.2645}} & \cellcolor{red!30}{\textcolor{black}{0.0004}}\\
+	$(0,1,1)(0,1,0)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.8979}} & \cellcolor{green!30}{\textcolor{black}{0.0708}}\\
+	$(0,1,1)(0,1,1)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.3285}} & \cellcolor{green!30}{\textcolor{black}{0.6518}} & \cellcolor{yellow!30}{\textcolor{black}{0.0441}}\\
+	$(0,1,1)(1,1,0)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.1013}} & \cellcolor{green!30}{\textcolor{black}{0.4804}} & \cellcolor{green!30}{\textcolor{black}{0.0703}}\\
+	$(0,1,1)(2,1,0)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.5952}} & \cellcolor{green!30}{\textcolor{black}{0.5259}} & \cellcolor{green!30}{\textcolor{black}{0.0766}}\\
+	$(1,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.5525}} & \cellcolor{red!30}{\textcolor{black}{0.0001}}\\
+	$(1,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0011}} & \cellcolor{green!30}{\textcolor{black}{0.4607}} & \cellcolor{yellow!30}{\textcolor{black}{0.0119}}\\
+	$(1,1,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0050}} & \cellcolor{green!30}{\textcolor{black}{0.2662}} & \cellcolor{red!30}{\textcolor{black}{0.0094}}\\
+	$(1,1,0)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{\textcolor{black}{0.0128}} & \cellcolor{green!30}{\textcolor{black}{0.3153}} & \cellcolor{green!30}{\textcolor{black}{0.1295}}\\
+	$(1,1,1)(3,1,1)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.1099}} & \cellcolor{green!30}{\textcolor{black}{0.5682}} & \cellcolor{green!30}{\textcolor{black}{0.1530}}\\
+	$(1,1,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0001}} & \cellcolor{green!30}{\textcolor{black}{0.6610}} & \cellcolor{green!30}{\textcolor{black}{0.0794}}\\
+	$(1,1,3)(3,1,0)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.2887}} & \cellcolor{green!30}{\textcolor{black}{0.6380}} & \cellcolor{green!30}{\textcolor{black}{0.1498}}\\
+	$(2,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.5572}} & \cellcolor{red!30}{\textcolor{black}{0.0059}}\\
+	$(2,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0021}} & \cellcolor{green!30}{\textcolor{black}{0.3853}} & \cellcolor{green!30}{\textcolor{black}{0.1115}}\\
+	$(2,1,0)(1,1,0)_{[12]}$ & \cellcolor{yellow!30}{\textcolor{black}{0.0101}} & \cellcolor{green!30}{\textcolor{black}{0.2292}} & \cellcolor{red!30}{\textcolor{black}{0.0079}}\\
+	$(2,1,0)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{\textcolor{black}{0.0495}} & \cellcolor{green!30}{\textcolor{black}{0.2485}} & \cellcolor{green!30}{\textcolor{black}{0.1624}}\\
+	$(2,1,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.6191}} & \cellcolor{yellow!30}{\textcolor{black}{0.0138}}\\
+	$(2,1,2)(2,1,0)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.8113}} & \cellcolor{green!30}{\textcolor{black}{0.3692}} & \cellcolor{green!30}{\textcolor{black}{0.5551}}\\
+	$(2,1,2)(2,1,2)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.1520}} & \cellcolor{green!30}{\textcolor{black}{0.7260}} & \cellcolor{yellow!30}{\textcolor{black}{0.0206}}\\
+	$(2,1,3)(0,1,1)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.8109}} & \cellcolor{green!30}{\textcolor{black}{0.7890}} & \cellcolor{red!30}{\textcolor{black}{0.0068}}\\
+	$(2,1,3)(1,1,0)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.0866}} & \cellcolor{green!30}{\textcolor{black}{0.5023}} & \cellcolor{green!30}{\textcolor{black}{0.0621}}\\
+	$(3,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{\textcolor{black}{0.0000}} & \cellcolor{green!30}{\textcolor{black}{0.6458}} & \cellcolor{green!30}{\textcolor{black}{0.2262}}\\
+	$(3,1,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{\textcolor{black}{0.0196}} & \cellcolor{green!30}{\textcolor{black}{0.4139}} & \cellcolor{green!30}{\textcolor{black}{0.0813}}\\
+	$(3,1,0)(1,1,0)_{[12]}$ & \cellcolor{yellow!30}{\textcolor{black}{0.0107}} & \cellcolor{green!30}{\textcolor{black}{0.3114}} & \cellcolor{yellow!30}{\textcolor{black}{0.0158}}\\
+	$(3,1,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{\textcolor{black}{0.1443}} & \cellcolor{green!30}{\textcolor{black}{0.3135}} & \cellcolor{green!30}{\textcolor{black}{0.0604}}\\
 		
 	\end{longtable}
 	
@@ -476,36 +491,33 @@ De la teoría el único modelo de suavizado que debería ajustarse es el suaviza
 	\toprule
 	\endlastfoot
 	
-	$(0,0,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.0531 & 3.5227\\
-	$(0,0,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.1000 & 3.2865\\
-	$(0,0,0)(2,1,3)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.9201 & 3.5917\\
-	$(0,0,1)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 4.2458 & 3.5412\\
-	$(0,0,1)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7374 & 3.8851\\
-	$(0,0,1)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.8509 & 3.3284\\
-	$(0,0,1)(2,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7432 & 3.5380\\
-	$(0,0,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.1365 & 3.6381\\
-	$(0,0,2)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5665 & 4.1563\\
-	$(0,0,2)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.6802 & 3.4406\\
-	$(0,0,2)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.6035 & 3.5702\\
-	$(0,0,3)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5081 & 4.2694\\
-	$(0,0,3)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5580 & 3.5936\\
-	$(1,0,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.1648 & 3.6213\\
-	$(1,0,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.4760 & 4.7911\\
-	$(1,0,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.6973 & 3.4407\\
-	$(1,0,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5537 & 3.7018\\
-	$(1,0,1)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.9917 & 4.1054\\
-	$(1,0,1)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.0437 & 4.0382\\
-	\cellcolor{magenta!30}{$(1,0,1)(1,1,0)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.4807 & 3.6146\\
-	$(1,0,1)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.3184 & 3.7311\\
-	$(2,0,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.0448 & 3.8182\\
-	$(2,0,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.3101 & 5.1379\\
-	\cellcolor{magenta!30}{$(2,0,0)(1,1,0)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.5523 & 3.5725\\
-	$(2,0,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.4424 & 3.7190\\
-	$(2,0,1)(2,1,3)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.1133 & 5.5767\\
-	$(3,0,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.2204 & 5.3714\\
-	$(3,0,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.3924 & 3.7661\\
-	$(3,0,0)(2,1,3)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 2.9320 & 6.4224\\
-	\cellcolor{magenta!30}{$(3,0,2)(2,1,0)_{[12]}$} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.3215 & 3.7474\\
+	$(0,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.5457 & 5.4550\\
+	$(0,1,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.3247 & 9.0782\\
+	$(0,1,0)(2,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.0619 & 9.5741\\
+	$(0,1,1)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 4.0795 & 6.0074\\
+	$(0,1,1)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 2.9454 & 2.7503\\
+	$(0,1,1)(1,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.5437 & 4.0226\\
+	$(0,1,1)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.3651 & 3.8749\\
+	$(1,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.3816 & 9.6198\\
+	$(1,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.2226 & 4.0488\\
+	$(1,1,0)(1,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7974 & 6.7103\\
+	$(1,1,0)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.6757 & 6.4169\\
+	$(1,1,1)(3,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.3217 & 3.4179\\
+	$(1,1,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 4.0219 & 10.0241\\
+	$(1,1,3)(3,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.3345 & 3.6614\\
+	$(2,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 4.2175 & 7.8195\\
+	$(2,1,0)(0,1,1)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.1004 & 3.3025\\
+	$(2,1,0)(1,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 3.7005 & 5.5063\\
+	$(2,1,0)(2,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.5346 & 5.1008\\
+	$(2,1,2)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.9516 & 9.4623\\
+	$(2,1,2)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.2988 & 4.7930\\
+	$(2,1,2)(2,1,2)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 2.9812 & 2.7818\\
+	$(2,1,3)(0,1,1)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{red!30}{NO} & 2.8897 & 2.9399\\
+	$(2,1,3)(1,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.4447 & 4.1129\\
+	$(3,1,0)(0,1,0)_{[12]}$ & \cellcolor{red!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 4.1140 & 7.4902\\
+	$(3,1,0)(0,1,1)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.0852 & 3.0863\\
+	$(3,1,0)(1,1,0)_{[12]}$ & \cellcolor{yellow!30}{NO} & \cellcolor{green!30}{SÍ} & \cellcolor{yellow!30}{NO} & 3.5949 & 5.1382\\
+	$(3,1,0)(2,1,0)_{[12]}$ & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & \cellcolor{green!30}{SÍ} & 3.4197 & 4.7327\\
 	
 \end{longtable}
 
