@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.27)  4 FEB 2026 20:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.27)  10 FEB 2026 19:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1253,43 +1253,38 @@ Overfull \hbox (53.19795pt too wide) in paragraph at lines 541--554
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 560--562
+Underfull \hbox (badness 10000) in paragraph at lines 561--563
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 563--565
-
- []
-
-<a.pdf, id=157, 461.725pt x 176.66pt>
+<a.pdf, id=157, 473.77pt x 230.8625pt>
 File: a.pdf Graphic file (type pdf)
 <use a.pdf>
-Package pdftex.def Info: a.pdf  used on input line 574.
-(pdftex.def)             Requested size: 218.51521pt x 83.60437pt.
+Package pdftex.def Info: a.pdf  used on input line 571.
+(pdftex.def)             Requested size: 218.51521pt x 106.47984pt.
 <b.pdf, id=158, 461.725pt x 346.29375pt>
 File: b.pdf Graphic file (type pdf)
 <use b.pdf>
-Package pdftex.def Info: b.pdf  used on input line 581.
+Package pdftex.def Info: b.pdf  used on input line 578.
 (pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
 <c.pdf, id=159, 461.725pt x 346.29375pt>
 File: c.pdf Graphic file (type pdf)
 <use c.pdf>
-Package pdftex.def Info: c.pdf  used on input line 591.
+Package pdftex.def Info: c.pdf  used on input line 588.
 (pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
 <d.pdf, id=160, 461.725pt x 346.29375pt>
 File: d.pdf Graphic file (type pdf)
 <use d.pdf>
-Package pdftex.def Info: d.pdf  used on input line 598.
+Package pdftex.def Info: d.pdf  used on input line 595.
 (pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
 [14 <./a.pdf> <./b.pdf> <./c.pdf> <./d.pdf>] [15]
-Overfull \hbox (38.36539pt too wide) in paragraph at lines 623--623
+Overfull \hbox (38.36539pt too wide) in paragraph at lines 619--619
 \OT1/cmr/m/n/10.95 2026]. $https : / / datos . madrid . es / portal / site / eg
 ob / menuitem . c05c1f754a33a9fbe4b2e4b284f1a5a0 /
  []
 
 
-Overfull \hbox (0.8903pt too wide) in paragraph at lines 623--623
+Overfull \hbox (0.8903pt too wide) in paragraph at lines 619--619
 [][]\OT1/cmr/m/n/10.95 World Health Or-ga-ni-za-tion. (2021). \OT1/cmr/m/it/10.
 95 WHO glo-bal air qua-lity gui-de-li-nes: par-ti-cu-la-te mat-ter (PM2.5
  []
@@ -1350,7 +1345,7 @@ Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10
 cm/cmtt10.pfb><C:/Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmtt9.pfb><C:/Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (16 pages, 534654 bytes).
+Output written on main.pdf (16 pages, 533947 bytes).
 PDF statistics:
  288 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

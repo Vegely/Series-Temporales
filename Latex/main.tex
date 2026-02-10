@@ -556,68 +556,64 @@ En la tabla \ref{taB:arimaFInal} se detallan los modelos SARIMA escogidos junto 
 \end{table}
 
 \newpage
-	\section{Discusión}
-	Una vez obtenidos los resultados anteriores se entrenan ahora 4 modelos predictivos, uno basado en el suavizado de Holt-Winters y otros 3 basados en modelos ARIMA. Pues como se puede ver si se comparan las tablas \ref{tab:alis} y \ref{taB:arimaFInal} el modelo determinista mediante suavizados tiene una mejor generalización y ajusta mejor nuevos datos.
-	\newline
-	
-	No obstante, tal y como se vio en la figura \ref{fig:SerieTRans} los modelos cometen un gran error al principio del entrenamiento y posiblemente si se tomasen los datos a partir de 2012 los modelos ARIMA mejorarían significativamente.
-	\newline
-	
-	Por último, como el objetivo es predecir se reentrenan todos los modelos con todos los datos de la serie, es decir, se juntan los conjuntos de entrenamiento y validación en uno solo porque para una predicción a futuro los más relevante son los datos más recientes. En la figura \ref{fig:4forecast} se recogen las predicciones de estos 4 modelos.
-	
-	
-	\begin{figure}[H]
+\section{Discusión y Conclusiones}
+
+Una vez obtenidos los resultados anteriores se entrenaron 4 modelos predictivos: uno basado en el suavizado de Holt-Winters y otros 3 basados en modelos ARIMA. Al comparar las tablas \ref{tab:alis} y \ref{taB:arimaFInal}, se observa que el modelo determinista mediante suavizados presenta una mejor generalización y ajusta mejor los nuevos datos.
+\newline
+
+Dado que el objetivo final es la predicción, se reentrenan todos los modelos utilizando la totalidad de la serie histórica (unificando los conjuntos de entrenamiento y validación), bajo la premisa de que para una proyección futura los datos más recientes son los más relevantes. En la figura \ref{fig:4forecast} se recogen las predicciones de estos 4 modelos ajustados.
+
+\begin{figure}[H]
+	\centering
+	% --- Fila 1 ---
+	\begin{subfigure}[b]{0.48\textwidth}
 		\centering
-		% --- Fila 1 ---
-		\begin{subfigure}[b]{0.48\textwidth}
-			\centering
-			\includegraphics[width=\linewidth]{a.pdf}
-			\caption{Holt-Winters Aditivo}
-			\label{fig:pred_a}
-		\end{subfigure}
-		\hfill % Espacio flexible para separarlas
-		\begin{subfigure}[b]{0.48\textwidth}
-			\centering
-			\includegraphics[width=\linewidth]{b.pdf}
-			\caption{SARIMA $(0,1,1)(2,1,0)_{[12]}$}
-			\label{fig:pred_b}
-		\end{subfigure}
-		
-		\vspace{0.5cm} % Espacio vertical entre filas
-		
-		% --- Fila 2 ---
-		\begin{subfigure}[b]{0.48\textwidth}
-			\centering
-			\includegraphics[width=\linewidth]{c.pdf}
-			\caption{SARIMA $(1,1,1)(3,1,1)_{[12]}$}
-			\label{fig:pred_c}
-		\end{subfigure}
-		\hfill
-		\begin{subfigure}[b]{0.48\textwidth}
-			\centering
-			\includegraphics[width=\linewidth]{d.pdf}
-			\caption{SARIMA $(1,1,3)(3,1,0)_{[12]}$}
-			\label{fig:pred_d}
-		\end{subfigure}
-		
-		\caption{Predicciones de los 4 modelos ajustados:.}
-		\label{fig:4forecast}
-	\end{figure}
+		\includegraphics[width=\linewidth]{a.pdf}
+		\caption{Holt-Winters Aditivo}
+		\label{fig:pred_a}
+	\end{subfigure}
+	\hfill % Espacio flexible para separarlas
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{b.pdf}
+		\caption{SARIMA $(0,1,1)(2,1,0)_{[12]}$}
+		\label{fig:pred_b}
+	\end{subfigure}
+	
+	\vspace{0.5cm} % Espacio vertical entre filas
+	
+	% --- Fila 2 ---
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{c.pdf}
+		\caption{SARIMA $(1,1,1)(3,1,1)_{[12]}$}
+		\label{fig:pred_c}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{d.pdf}
+		\caption{SARIMA $(1,1,3)(3,1,0)_{[12]}$}
+		\label{fig:pred_d}
+	\end{subfigure}
+	
+	\caption{Predicciones de los 4 modelos ajustados.}
+	\label{fig:4forecast}
+\end{figure}
 \newpage
-	\section{Conclusiones}
-	El análisis de la serie temporal de las concentraciones de \(NO_2\) en la estación de Cuatro Caminos ha permitido caracterizar la dinámica de la contaminación urbana y evaluar la eficacia de distintas herramientas de predicción. A partir de los resultados obtenidos y la discusión planteada, se extraen las siguientes conclusiones principales:
+
+A modo de síntesis, el análisis de la serie temporal de las concentraciones de \(NO_2\) en la estación de Cuatro Caminos ha permitido caracterizar la dinámica de la contaminación urbana y evaluar la eficacia de distintas herramientas de predicción. Se extraen las siguientes conclusiones principales:
+
+\begin{itemize}
+	\item \textbf{Dinámica de la serie y preprocesamiento:} El análisis exploratorio confirmó un periodo estacional mensual ($s=12$) y una tendencia decreciente a largo plazo, consistente con la implementación de políticas de reducción de emisiones en la última década. Asimismo, se identificó la naturaleza heterocedástica de los datos, requiriendo una transformación de Box-Cox ($\lambda \approx 0.8$) y una diferenciación estacional ($D=1$) y regular ($d=1$) para garantizar la estacionariedad, confirmada posteriormente mediante el test de Dickey-Fuller.
 	
-	\begin{itemize}
-		\item \textbf{Dinámica de la serie y preprocesamiento:} El análisis exploratorio confirmó un periodo estacional mensual ($s=12$) y una tendencia decreciente a largo plazo, consistente con la implementación de políticas de reducción de emisiones en la última década. Asimismo, se identificó la naturaleza heterocedástica de los datos, requiriendo una transformación de Box-Cox ($\lambda \approx 0.8$) y una diferenciación estacional ($D=1$) para garantizar la estacionariedad, confirmada posteriormente mediante el test de Dickey-Fuller.
-		
-		\item \textbf{Superioridad de los métodos de alisado:} Los modelos deterministas demostraron una mayor capacidad de generalización que los estocásticos en este escenario específico. El modelo de \textbf{Holt-Winters aditivo} resultó ser el más robusto, alcanzando el menor error en el conjunto de validación ($\text{RMSE} = 2.88 \, \mu g/m^3$). 
-		
-		\item \textbf{Limitaciones de los modelos SARIMA:} Si bien se identificaron modelos estadísticamente significativos, estos presentaron dificultades para cumplir estrictamente con la hipótesis de normalidad en los residuos (Test de Kolmogorov-Smirnov). Esto sugiere que la serie contiene dinámicas no lineales o valores atípicos puntuales que la estructura lineal de los modelos ARIMA no logra capturar en su totalidad.
-		
-		\item \textbf{Impacto de la volatilidad histórica:} Se observó un fenómeno particular donde el error de entrenamiento fue sistemáticamente superior al de validación en el caso concreto de Holt-Winters. Esto evidencia que el comportamiento del contaminante antes de 2012 presentaba una variabilidad y unos niveles medios mucho más erráticos que en la actualidad. 
-	\end{itemize}
+	\item \textbf{Superioridad de los métodos de alisado:} Los modelos deterministas demostraron una mayor capacidad de generalización que los estocásticos en este escenario específico. El modelo de \textbf{Holt-Winters aditivo} resultó ser el más robusto, alcanzando el menor error en el conjunto de validación ($\text{RMSE} = 2.88 \, \mu g/m^3$).
 	
-	Como líneas de trabajo futuro, se propone acotar el rango histórico de entrenamiento (por ejemplo, utilizando datos únicamente a partir de 2012) para reducir el ruido estructural y mejorar el ajuste de los modelos estocásticos. Asimismo, sería pertinente explorar modelos multivariantes (ARIMAX) que incorporen variables exógenas meteorológicas, o técnicas de aprendizaje profundo (Redes LSTM) capaces de modelar las no linealidades detectadas en los residuos.
+	\item \textbf{Limitaciones de los modelos SARIMA:} Si bien se identificaron modelos estadísticamente significativos y válidos, su capacidad predictiva resultó inferior a la del enfoque determinista. En términos comparativos, los modelos SARIMA presentaron un RMSE más elevado en la fase de validación, mostrando una menor precisión para ajustar los datos más recientes de la serie frente al método de Holt-Winters.
+\end{itemize}
+
+
+Como líneas de trabajo futuro, sería pertinente explorar modelos multivariantes (ARIMAX) que incorporen variables exógenas meteorológicas, o bien investigar técnicas de aprendizaje profundo (como redes LSTM) capaces de modelar las no linealidades complejas que las estructuras clásicas no logran capturar en su totalidad.
 
 	\newpage
 	\printbibliography[title={Referencias}]
