@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.27)  10 FEB 2026 20:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.27)  11 FEB 2026 19:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -944,22 +944,22 @@ LaTeX Info: Redefining \% on input line 9.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Info: Redefining \. on input line 42.
-LaTeX Info: Redefining \% on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Info: Redefining \. on input line 45.
+LaTeX Info: Redefining \% on input line 45.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: longtable package is loaded.
@@ -1031,8 +1031,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (main.bbl)
-Package biblatex Info: Reference section=0 on input line 42.
-Package biblatex Info: Reference segment=0 on input line 42.
+Package biblatex Info: Reference section=0 on input line 45.
+Package biblatex Info: Reference segment=0 on input line 45.
 
 (C:\Users\bogur\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -1059,12 +1059,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
 
  (C:\Users\bogur\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
 
 
 (C:\Users\bogur\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1073,11 +1073,6 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/bogur/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 55--57
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 58--60
 
  []
@@ -1087,33 +1082,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--63
 
  []
 
-<screenshot001.png, id=16, 752.0597pt x 490.83376pt>
-File: screenshot001.png Graphic file (type png)
-<use screenshot001.png>
-Package pdftex.def Info: screenshot001.png  used on input line 67.
-(pdftex.def)             Requested size: 318.66948pt x 207.98369pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--75
+Underfull \hbox (badness 10000) in paragraph at lines 64--66
 
  []
 
+<screenshot001.png, id=16, 752.0597pt x 490.83376pt>
+File: screenshot001.png Graphic file (type png)
+<use screenshot001.png>
+Package pdftex.def Info: screenshot001.png  used on input line 70.
+(pdftex.def)             Requested size: 318.66948pt x 207.98369pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 76--78
 
  []
 
-[2 <./screenshot001.png>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 79--81
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 86--88
+[2 <./screenshot001.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 82--84
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--94
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
 
  []
 
@@ -1122,33 +1117,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 95--97
 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 113--115
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--100
 
  []
 
-
+[3]
 Underfull \hbox (badness 10000) in paragraph at lines 116--118
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--138
+Underfull \hbox (badness 10000) in paragraph at lines 119--121
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--141
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 183--185
+Underfull \hbox (badness 10000) in paragraph at lines 186--188
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 212--214
+Underfull \hbox (badness 10000) in paragraph at lines 215--217
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--217
+Underfull \hbox (badness 10000) in paragraph at lines 218--220
 
  []
 
@@ -1156,57 +1156,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 215--217
 <grafica_serie_1.pdf, id=45, 605.26125pt x 422.57875pt>
 File: grafica_serie_1.pdf Graphic file (type pdf)
 <use grafica_serie_1.pdf>
-Package pdftex.def Info: grafica_serie_1.pdf  used on input line 256.
+Package pdftex.def Info: grafica_serie_1.pdf  used on input line 259.
 (pdftex.def)             Requested size: 318.66948pt x 222.48906pt.
 <grafica_descomposicion_1.pdf, id=46, 418.56375pt x 364.36125pt>
 File: grafica_descomposicion_1.pdf Graphic file (type pdf)
 <use grafica_descomposicion_1.pdf>
-Package pdftex.def Info: grafica_descomposicion_1.pdf  used on input line 266.
+Package pdftex.def Info: grafica_descomposicion_1.pdf  used on input line 269.
 (pdftex.def)             Requested size: 227.62206pt x 198.14206pt.
  [8 <./grafica_serie_1.pdf> <./grafica_descomposicion_1.pdf>]
 <grafica_serie_2.pdf, id=66, 418.56375pt x 364.36125pt>
 File: grafica_serie_2.pdf Graphic file (type pdf)
 <use grafica_serie_2.pdf>
-Package pdftex.def Info: grafica_serie_2.pdf  used on input line 279.
+Package pdftex.def Info: grafica_serie_2.pdf  used on input line 282.
 (pdftex.def)             Requested size: 218.51521pt x 190.21393pt.
 <grafica_outliers_1.pdf, id=67, 418.56375pt x 364.36125pt>
 File: grafica_outliers_1.pdf Graphic file (type pdf)
 <use grafica_outliers_1.pdf>
-Package pdftex.def Info: grafica_outliers_1.pdf  used on input line 287.
+Package pdftex.def Info: grafica_outliers_1.pdf  used on input line 290.
 (pdftex.def)             Requested size: 218.51521pt x 190.21393pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--300
+Underfull \hbox (badness 10000) in paragraph at lines 301--303
 
  []
 
 <diferenciada.pdf, id=68, 461.725pt x 346.29375pt>
 File: diferenciada.pdf Graphic file (type pdf)
 <use diferenciada.pdf>
-Package pdftex.def Info: diferenciada.pdf  used on input line 311.
+Package pdftex.def Info: diferenciada.pdf  used on input line 314.
 (pdftex.def)             Requested size: 250.38564pt x 187.78844pt.
 [9 <./grafica_serie_2.pdf> <./grafica_outliers_1.pdf>]
 <simple.pdf, id=86, 461.725pt x 246.9225pt>
 File: simple.pdf Graphic file (type pdf)
 <use simple.pdf>
-Package pdftex.def Info: simple.pdf  used on input line 325.
+Package pdftex.def Info: simple.pdf  used on input line 328.
 (pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
 <doble.pdf, id=87, 461.725pt x 246.9225pt>
 File: doble.pdf Graphic file (type pdf)
 <use doble.pdf>
-Package pdftex.def Info: doble.pdf  used on input line 332.
+Package pdftex.def Info: doble.pdf  used on input line 335.
 (pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
 <hw_add.pdf, id=88, 461.725pt x 246.9225pt>
 File: hw_add.pdf Graphic file (type pdf)
 <use hw_add.pdf>
-Package pdftex.def Info: hw_add.pdf  used on input line 342.
+Package pdftex.def Info: hw_add.pdf  used on input line 345.
 (pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
 <hw_mult.pdf, id=89, 461.725pt x 246.9225pt>
 File: hw_mult.pdf Graphic file (type pdf)
 <use hw_mult.pdf>
-Package pdftex.def Info: hw_mult.pdf  used on input line 349.
+Package pdftex.def Info: hw_mult.pdf  used on input line 352.
 (pdftex.def)             Requested size: 218.51521pt x 116.8561pt.
 
-Overfull \hbox (5.52695pt too wide) in paragraph at lines 363--371
+Overfull \hbox (5.52695pt too wide) in paragraph at lines 366--374
  [][] 
  []
 
@@ -1215,76 +1215,76 @@ Overfull \hbox (5.52695pt too wide) in paragraph at lines 363--371
 <fap.pdf, id=126, 461.725pt x 346.29375pt>
 File: fap.pdf Graphic file (type pdf)
 <use fap.pdf>
-Package pdftex.def Info: fap.pdf  used on input line 387.
+Package pdftex.def Info: fap.pdf  used on input line 390.
 (pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
 <fas.pdf, id=127, 461.725pt x 346.29375pt>
 File: fas.pdf Graphic file (type pdf)
 <use fas.pdf>
-Package pdftex.def Info: fas.pdf  used on input line 395.
+Package pdftex.def Info: fas.pdf  used on input line 398.
 (pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
  [11 <./fap.pdf> <./fas.pdf>]
-Overfull \hbox (36.35875pt too wide) in alignment at lines 471--478
+Overfull \hbox (36.35875pt too wide) in alignment at lines 474--481
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (36.35875pt too wide) in alignment at lines 478--484
+Overfull \hbox (36.35875pt too wide) in alignment at lines 481--487
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (36.35875pt too wide) in alignment at lines 484--488
+Overfull \hbox (36.35875pt too wide) in alignment at lines 487--491
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (36.35875pt too wide) in alignment at lines 488--492
+Overfull \hbox (36.35875pt too wide) in alignment at lines 491--495
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (36.35875pt too wide) in alignment at lines 492--522
+Overfull \hbox (36.35875pt too wide) in alignment at lines 495--525
  [] [] [] [] [] [] 
  []
 
 [12]
-Overfull \hbox (53.19795pt too wide) in paragraph at lines 541--554
+Overfull \hbox (53.19795pt too wide) in paragraph at lines 544--557
  [][] 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 561--563
+Underfull \hbox (badness 10000) in paragraph at lines 564--566
 
  []
 
 <a.pdf, id=157, 473.77pt x 230.8625pt>
 File: a.pdf Graphic file (type pdf)
 <use a.pdf>
-Package pdftex.def Info: a.pdf  used on input line 571.
+Package pdftex.def Info: a.pdf  used on input line 574.
 (pdftex.def)             Requested size: 218.51521pt x 106.47984pt.
 <b.pdf, id=158, 461.725pt x 346.29375pt>
 File: b.pdf Graphic file (type pdf)
 <use b.pdf>
-Package pdftex.def Info: b.pdf  used on input line 578.
+Package pdftex.def Info: b.pdf  used on input line 581.
 (pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
 <c.pdf, id=159, 461.725pt x 346.29375pt>
 File: c.pdf Graphic file (type pdf)
 <use c.pdf>
-Package pdftex.def Info: c.pdf  used on input line 588.
+Package pdftex.def Info: c.pdf  used on input line 591.
 (pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
 <d.pdf, id=160, 461.725pt x 346.29375pt>
 File: d.pdf Graphic file (type pdf)
 <use d.pdf>
-Package pdftex.def Info: d.pdf  used on input line 595.
+Package pdftex.def Info: d.pdf  used on input line 598.
 (pdftex.def)             Requested size: 218.51521pt x 163.88358pt.
 [14 <./a.pdf> <./b.pdf> <./c.pdf> <./d.pdf>] [15]
-Overfull \hbox (38.36539pt too wide) in paragraph at lines 619--619
+Overfull \hbox (38.36539pt too wide) in paragraph at lines 622--622
 \OT1/cmr/m/n/10.95 2026]. $https : / / datos . madrid . es / portal / site / eg
 ob / menuitem . c05c1f754a33a9fbe4b2e4b284f1a5a0 /
  []
 
 
-Overfull \hbox (0.8903pt too wide) in paragraph at lines 619--619
+Overfull \hbox (0.8903pt too wide) in paragraph at lines 622--622
 [][]\OT1/cmr/m/n/10.95 World Health Or-ga-ni-za-tion. (2021). \OT1/cmr/m/it/10.
 95 WHO glo-bal air qua-lity gui-de-li-nes: par-ti-cu-la-te mat-ter (PM2.5
  []
@@ -1345,7 +1345,7 @@ Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10
 cm/cmtt10.pfb><C:/Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmtt9.pfb><C:/Users/bogur/AppData/Local/Programs/MiKTeX/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (16 pages, 533866 bytes).
+Output written on main.pdf (16 pages, 533907 bytes).
 PDF statistics:
  288 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
